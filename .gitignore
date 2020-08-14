@@ -1,0 +1,35 @@
+########################
+# Node
+########################
+
+node_modules
+build/**
+
+########################
+# misc / editors
+########################
+*~
+*#
+**/.DS_STORE/**
+**/.netbeans/**
+**/nbproject/**
+**/.idea/**
+**/tracegl.js/**
+**/sftp-config.json/**
+**/tmp/**
+**TODO.md**
+**/.vscode**
+
+
+**/test/suites/localTest.js
+**/test/testpid.file
+**/test/credentials.txt
+report.xml
+**error.log
+
+
+########################
+# local config
+########################
+config/env/**
+.jenkins.conf
