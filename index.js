@@ -189,6 +189,8 @@ const acaee = () => {
           if (doc) response.push(doc)  
         }
       })
+      // Do not cache APIdocs
+      if (_.isFunction(res.setHeader)) res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
       if (_.isFunction(res.json)) return res.json(response)
       // classic callback as fallback
       return res(null, response)
