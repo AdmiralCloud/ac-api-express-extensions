@@ -1,6 +1,6 @@
 {
   "name": "ac-api-express-extensions",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "AdmiralCloud ExpressJS extensions for your API",
   "main": "index.js",
   "author": "Mark Poepping <mark.poepping@mmpro.de>",
