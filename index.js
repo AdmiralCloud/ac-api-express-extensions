@@ -276,6 +276,11 @@ const acaee = () => {
           field.customErrorMessage = _.get(r, 'customErrorMessage')
         }
       }
+
+      // check and set defaultsTo
+      if (_.get(field, 'defaultsTo') && !_.has(params, field.field)) {
+        _.set(params, field.field, _.get(field, 'defaultsTo'))
+      }
       return field
     })
     if (!_.size(fields)) return next()
