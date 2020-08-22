@@ -36,9 +36,9 @@ ac-countrylist@^1.0.1:
     lodash "^4.17.19"
 
 ac-sanitizer@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-2.3.2.tgz#ee925194decbcb9b21e316f3c2edfcc5da35bd0f"
-  integrity sha512-fs1Iz6BFY9K+HEtrY+nlfjnvcJR+ebnVW8Os0tKzNjR0iRT71maic4L7uDQfamwUvuXu5HQ+vAViZ1ZPUYhXJw==
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-2.3.5.tgz#670e2fe183702e564a8f2020d7e6fb1de949a600"
+  integrity sha512-7EqXW1CK33/4vJwj9E/ypELz6yK/cc33il91kxM6e2W5ZQfSyo0eUN+hbjbPXSxkl6CBSg7lTYVNGR/ajduIng==
   dependencies:
     ac-countrylist "^1.0.1"
     debug "^4.1.1"
