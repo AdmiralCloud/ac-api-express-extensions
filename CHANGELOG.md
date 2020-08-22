@@ -1,3 +1,16 @@
+<a name="0.1.1"></a>
+
+## [0.1.1](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.0..v0.1.1) (2020-08-22 17:43:09)
+
+
+### Bug Fix
+
+* **sanitizer:** Add defaultsTo value if no value is set | MP | [8fde551c0d64e6dfe3bb99c622920ac93d67ddd2](https://github.com/mmpro/ac-api-express-extensions/commit/8fde551c0d64e6dfe3bb99c622920ac93d67ddd2)    
+Add defaultsTo value if no value is set
+### Chores
+
+* **Misc:** Updated packages | MP | [adc42e1956248e6527fa76906bee21757b6ea605](https://github.com/mmpro/ac-api-express-extensions/commit/adc42e1956248e6527fa76906bee21757b6ea605)    
+Updated packages
 <a name="0.1.0"></a>
  
 # [0.1.0](https://github.com/mmpro/ac-api-express-extensions/compare/..v0.1.0) (2020-08-16 10:09:30)
