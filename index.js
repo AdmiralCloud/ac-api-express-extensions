@@ -52,7 +52,17 @@ const acaee = () => {
       }
       return _.map(fields, f => { 
         let required = _.find(f.requiredFor, { action })
-        f.required = required ? true : false
+        if (required) {
+          if (_.get(required, 'condition')) {
+            f.required = _.get(required, 'condition')
+          }
+          else {
+            f.required = true
+          }
+        }
+        else {
+          f.required = false
+        }
         let nullAllowed = _.find(f.nullAllowedFor, { action }) || _.find(f.nullAllowedFor, { action: httpMethod })
         if (nullAllowed) f.nullAllowed = true
 
@@ -266,7 +276,12 @@ const acaee = () => {
       if (_.isArray(field.requiredFor)) {
         let r = _.find(field.requiredFor, { action })
         if (r && r.condition) {
-          field.required = !_.get(params, r.condition)
+          if (_.get(r, 'condition.op') === 'not') {
+            field.required = !_.get(params, _.get(r, 'condition.field'))
+          }
+          else {
+            field.required = _.get(params, _.get(r, 'condition.field'))
+          }
         }
         else if (r) {
           field.required = true
