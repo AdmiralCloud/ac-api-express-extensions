@@ -189,7 +189,7 @@ const acaee = () => {
       _.forEach(availableActions, action => {
         let route = _.find(routes, { action })
         let routeName = _.get(route, 'name', _.get(route, 'action'))
-        if (!name || _.toLower(name) === _.toLower(routeName) || (_.toLower(name) === 'crud' && _.indexOf(['create', 'find', 'update', 'destroy'], routeName) > -1)) {
+        if (route && (!name || _.toLower(name) === _.toLower(routeName) || (_.toLower(name) === 'crud' && _.indexOf(['create', 'find', 'update', 'destroy'], routeName) > -1))) {
           let doc = prepareDocumentation({
             controller: controllerName,
             action,
