@@ -1,3 +1,16 @@
+<a name="0.1.3"></a>
+
+## [0.1.3](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.2..v0.1.3) (2020-10-01 09:45:12)
+
+
+### Bug Fix
+
+* **apidocRoute:** Minor fix if route action is not available | MP | [36bc8675ffcc46b0b0f4324240d5cc47ad07f120](https://github.com/mmpro/ac-api-express-extensions/commit/36bc8675ffcc46b0b0f4324240d5cc47ad07f120)    
+Minor fix if route action is not available yet
+### Chores
+
+* **Misc:** Updated packages | MP | [5bcf014b889dc58db7982b4bc0c0442b3413a267](https://github.com/mmpro/ac-api-express-extensions/commit/5bcf014b889dc58db7982b4bc0c0442b3413a267)    
+Updated packages
 <a name="0.1.2"></a>
 
 ## [0.1.2](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.1..v0.1.2) (2020-09-01 13:57:41)
