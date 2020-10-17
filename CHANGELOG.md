@@ -1,3 +1,12 @@
+<a name="0.1.4"></a>
+
+## [0.1.4](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.3..v0.1.4) (2020-10-17 13:24:21)
+
+
+### Bug Fix
+
+* **sanitizer:** Sanitizer now supports gps | MP | [6f7606be8bfd199ce7ea94787e7a321f52997699](https://github.com/mmpro/ac-api-express-extensions/commit/6f7606be8bfd199ce7ea94787e7a321f52997699)    
+Sanitizer now supports gps
 <a name="0.1.3"></a>
 
 ## [0.1.3](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.2..v0.1.3) (2020-10-01 09:45:12)
