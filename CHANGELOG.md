@@ -1,3 +1,12 @@
+<a name="0.1.5"></a>
+
+## [0.1.5](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.4..v0.1.5) (2020-10-17 14:15:45)
+
+
+### Bug Fix
+
+* **sanitizer:** Add RGB, hexColor and ratio | MP | [cfc4a0aa7470e8447e23a6007b3f60c73d10e482](https://github.com/mmpro/ac-api-express-extensions/commit/cfc4a0aa7470e8447e23a6007b3f60c73d10e482)    
+Add RGB, hexColor and ratio
 <a name="0.1.4"></a>
 
 ## [0.1.4](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.3..v0.1.4) (2020-10-17 13:24:21)
