@@ -51,10 +51,10 @@ ac-countrylist@^1.0.1:
   dependencies:
     lodash "^4.17.19"
 
-ac-sanitizer@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.2.0.tgz#d52a01d89cd5f9ab8cfceed88a2106bb8450bfa7"
-  integrity sha512-+ynEyGlm2wnPwleMS4D1jkc7FxNTj8B4nySNtZaCA8O1TjoW93VFE/Lp/b78Kd6q4oV/vNUDYGduQLDlCqx8ow==
+ac-sanitizer@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.3.0.tgz#ec47ef42d441307c09bf9fc09885d577d0919d6d"
+  integrity sha512-LL3oasKjLguNRSfHwkTjV+3qQwuXaomYsZ2qUFS1f0h/djkmtzB5T/xwwhD/efcyWEPY847uZXd8aLj7X6GKaA==
   dependencies:
     ac-countrylist "^1.0.1"
     debug "^4.2.0"
