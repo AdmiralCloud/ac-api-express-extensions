@@ -12,7 +12,7 @@
   "devDependencies": {
     "ac-semantic-release": "^0.2.5",
     "chai": "^4.2.0",
-    "eslint": "^7.11.0",
+    "eslint": "^7.12.1",
     "mocha": "^8.2.0"
   },
   "scripts": {
