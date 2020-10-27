@@ -1,3 +1,16 @@
+<a name="0.1.7"></a>
+
+## [0.1.7](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.6..v0.1.7) (2020-10-27 13:24:09)
+
+
+### Bug Fix
+
+* **sanitizer:** Use requiredFor on all object levels | MP | [4ef062e5023938b8f4b1b5adaf02dacef6321217](https://github.com/mmpro/ac-api-express-extensions/commit/4ef062e5023938b8f4b1b5adaf02dacef6321217)    
+Use requiredFor on all object levels to determine requirement
+### Chores
+
+* **Misc:** Updated packages | MP | [9111bb964e3b1d905aa92b6a46dca29f1746b9c7](https://github.com/mmpro/ac-api-express-extensions/commit/9111bb964e3b1d905aa92b6a46dca29f1746b9c7)    
+Updated packages
 <a name="0.1.6"></a>
 
 ## [0.1.6](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.5..v0.1.6) (2020-10-17 15:12:44)
