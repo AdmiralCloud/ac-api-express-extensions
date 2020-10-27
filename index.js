@@ -74,10 +74,23 @@ const acaee = () => {
         if (f.schema) {
           let schemaDef = []
           _.forOwn(f.schema, (obj, key) => {
+            let required = _.get(obj, 'required') || _.find(f.requiredFor, { action })
+            if (required) {
+              if (_.get(required, 'condition')) {
+                required = _.get(required, 'condition')
+              }
+              else {
+                required = true
+              }
+            }
+            else {
+              required = false
+            }
+
             let def = {
               field: key,
               type: !_.get(obj, 'flat') ? 'object' : _.get(obj, 'allowedKeys[0].type'),
-              required: _.get(obj, 'required'),
+              required,
               description: _.get(obj, 'description')
             }
             if (!_.get(obj, 'flat')) {
@@ -85,7 +98,7 @@ const acaee = () => {
               _.forEach(_.get(obj, 'allowedKeys'), keys => {
                 let def = {
                   field: _.get(keys, 'key'),
-                  required: _.get(keys, 'required'),
+                  required,
                   description: _.get(keys, 'description'),
                   type: _.get(keys, 'type'),
                   isMemberOf: _.get(keys, 'isMemberOf')
@@ -248,6 +261,39 @@ const acaee = () => {
     return next()
   }
 
+  const mapFieldDefinition = (field, action, params) => {
+    if (_.isArray(field.requiredFor)) {
+      let r = _.find(field.requiredFor, { action })
+      if (r && r.condition) {
+        if (_.get(r, 'condition.op') === 'not') {
+          field.required = !_.get(params, _.get(r, 'condition.field'))
+        }
+        else {
+          field.required = _.get(params, _.get(r, 'condition.field'))
+        }
+      }
+      else if (r) {
+        field.required = true
+      }
+      else field.required = false
+      if (_.get(r, 'customErrorMessage')) {
+        field.customErrorMessage = _.get(r, 'customErrorMessage')
+      }
+    }
+
+    // check and set defaultsTo
+    if (_.get(field, 'defaultsTo') && !_.has(params, field.field)) {
+      _.set(params, field.field, _.get(field, 'defaultsTo'))
+    }
+
+    if (_.get(field, 'properties')) {
+      field.properties = _.map(field.properties, prop => {
+        return mapFieldDefinition(prop, action, params)
+      })
+    }
+    return field
+  }
+
   const sanitizer = (config, route, req, res, next) => {
     if (!_.get(config, 'apiDoc')) return next()
     if (_.has(route, 'sanitizer')) return next() // route based sanitizer is activated
@@ -273,30 +319,7 @@ const acaee = () => {
     })
     // map required
     fields = _.map(fields, field => {
-      if (_.isArray(field.requiredFor)) {
-        let r = _.find(field.requiredFor, { action })
-        if (r && r.condition) {
-          if (_.get(r, 'condition.op') === 'not') {
-            field.required = !_.get(params, _.get(r, 'condition.field'))
-          }
-          else {
-            field.required = _.get(params, _.get(r, 'condition.field'))
-          }
-        }
-        else if (r) {
-          field.required = true
-        }
-        else field.required = false
-        if (_.get(r, 'customErrorMessage')) {
-          field.customErrorMessage = _.get(r, 'customErrorMessage')
-        }
-      }
-
-      // check and set defaultsTo
-      if (_.get(field, 'defaultsTo') && !_.has(params, field.field)) {
-        _.set(params, field.field, _.get(field, 'defaultsTo'))
-      }
-      return field
+      return mapFieldDefinition(field, action, params)
     })
     if (!_.size(fields)) return next()
 
