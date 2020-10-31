@@ -1,3 +1,12 @@
+<a name="0.1.8"></a>
+
+## [0.1.8](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.7..v0.1.8) (2020-10-31 16:29:08)
+
+
+### Bug Fix
+
+* **apidocRoute:** Add optional path parameter  | MP | [668b3a599d276de4f1c269747d7596f5fa45711f](https://github.com/mmpro/ac-api-express-extensions/commit/668b3a599d276de4f1c269747d7596f5fa45711f)    
+If controller name does not match path (e.g. DownloadLogsController vs /download) you can now set the path manually.
 <a name="0.1.7"></a>
 
 ## [0.1.7](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.6..v0.1.7) (2020-10-27 13:24:09)
