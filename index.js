@@ -168,7 +168,8 @@ const acaee = () => {
    * EXAMPLE
    * params
    * {
-   *   name: 'user',
+   *   name: 'user', // name of the ACAPI controller without the word Controller - must match the controller name!
+   *   path: 'xxx', // optional path if path for controller does not match controller name, e.g. Controller name: DownloadLogsController, but API path is just download (not downloadlogs)
    *   availableActions: ['find', 'create'],
    *   routes: [
    *    { method: 'get', path: '/v1/user', action: 'find' },
@@ -185,7 +186,7 @@ const acaee = () => {
 
 
     const apiPrefix = _.get(config, 'http.apiDoc.apiPrefix')
-    const path = `/${apiPrefix}/${_.toLower(controllerName.replace('Controller', ''))}/apidoc`
+    const path = `/${apiPrefix}/${_.toLower(_.get(params, 'path', controllerName))}/apidoc`
     let apiDocRoute = { 
       method: 'get', 
       path, 
