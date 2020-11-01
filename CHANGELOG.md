@@ -1,3 +1,12 @@
+<a name="0.1.9"></a>
+
+## [0.1.9](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.8..v0.1.9) (2020-11-01 11:10:05)
+
+
+### Bug Fix
+
+* **sanitizer:** Range can be a function, required condition can be a value | MP | [a6347203cc643d8c137039267aee620a84084a1a](https://github.com/mmpro/ac-api-express-extensions/commit/a6347203cc643d8c137039267aee620a84084a1a)    
+Use rangeDef if you want to use a function (e.g. timestamp) as range. Required for can now have a value to check for as requirement condition.
 <a name="0.1.8"></a>
 
 ## [0.1.8](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.7..v0.1.8) (2020-10-31 16:29:08)
