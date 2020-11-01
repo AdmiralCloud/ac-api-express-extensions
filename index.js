@@ -269,6 +269,9 @@ const acaee = () => {
         if (_.get(r, 'condition.op') === 'not') {
           field.required = !_.get(params, _.get(r, 'condition.field'))
         }
+        else if (_.get(r, 'condition.value')) {
+          field.required = _.get(params, _.get(r, 'condition.field')) === _.get(r, 'condition.value')
+        }
         else {
           field.required = _.get(params, _.get(r, 'condition.field'))
         }
@@ -280,6 +283,18 @@ const acaee = () => {
       if (_.get(r, 'customErrorMessage')) {
         field.customErrorMessage = _.get(r, 'customErrorMessage')
       }
+    }
+
+    // range can be set with variables (e.g. if you want a time frame)
+    // if so, do not define range itself, but use rangeDef with properties type (timestamp) and deviation
+    if (_.isPlainObject(field.rangeDef)) {
+      let low = 0
+      let high = 100
+      if (_.get(field, 'rangeDef.type') === 'timestamp') {
+        low = _.round(new Date().getTime()/1000) - _.get(field, 'rangeDef.deviation')
+        high = _.round(new Date().getTime()/1000) + _.get(field, 'rangeDef.deviation')
+      }
+      field.range = [low, high]
     }
 
     // check and set defaultsTo
