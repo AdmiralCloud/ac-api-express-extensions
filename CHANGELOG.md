@@ -1,3 +1,12 @@
+<a name="0.1.10"></a>
+
+## [0.1.10](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.9..v0.1.10) (2020-11-09 15:47:01)
+
+
+### Bug Fix
+
+* **sanitizer:** Updated ac-sanitizer | MP | [cf857f083835da31074a21d9710ea48171269d57](https://github.com/mmpro/ac-api-express-extensions/commit/cf857f083835da31074a21d9710ea48171269d57)    
+String now support convert options
 <a name="0.1.9"></a>
 
 ## [0.1.9](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.8..v0.1.9) (2020-11-01 11:10:05)
