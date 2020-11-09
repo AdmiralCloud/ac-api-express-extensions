@@ -51,12 +51,21 @@ ac-countrylist@^1.0.1:
   dependencies:
     lodash "^4.17.20"
 
+ac-file-extensions@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ac-file-extensions/-/ac-file-extensions-1.2.0.tgz#77cc3f1754ae7b5e559e892cbcecde54cde22f78"
+  integrity sha512-GbpaTwQvNV9WdohkjGo9F392+rrPRcrZVBhj+GHKPb8+XJe4+yA6KqdCZ/3wDECEyZSVvivtIpl2RK3b/+A/Qg==
+  dependencies:
+    ac-semantic-release "^0.2.5"
+    lodash "^4.17.20"
+
 ac-sanitizer@^3.3.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.3.1.tgz#388546596ef341180decc3df7d7cc0c6036a642d"
-  integrity sha512-5l6AbUhcoAdHLxWZ+c1f1Y9EZT6vNeFGmbjbcuuGKyWNi+szBGOU0hWWaSOOG6S8ZtMhGXn0VAoRB+C8hTHKZQ==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.4.0.tgz#40105318b38ab90005004919b7cf03728e7f3ece"
+  integrity sha512-nQtanmkjSf5LcyBSat0/bHo1by2VYHhkjdztx6bfKhLGlVRz9upIg052EmSkA7CXriqNAoJVOezO4shPZxND0g==
   dependencies:
     ac-countrylist "^1.0.1"
+    ac-file-extensions "^1.2.0"
     debug "^4.2.0"
     hashids "^2.2.1"
     lodash "^4.17.20"
