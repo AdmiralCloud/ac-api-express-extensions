@@ -1,3 +1,13 @@
+<a name="0.1.11"></a>
+
+## [0.1.11](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.10..v0.1.11) (2020-11-09 20:57:53)
+
+
+### Bug Fix
+
+* **sanitizer:** Updated sanitizer | MP | [6bfa2e15fa339ecf7ef031644baee196907f456e](https://github.com/mmpro/ac-api-express-extensions/commit/6bfa2e15fa339ecf7ef031644baee196907f456e)    
+Sanitizer now support file extensions  
+Related issues: [Sanitizer now support file extensions/issues#undefined](https://github.com/Sanitizer now support file extensions/issues/undefined)
 <a name="0.1.10"></a>
 
 ## [0.1.10](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.9..v0.1.10) (2020-11-09 15:47:01)
