@@ -59,10 +59,10 @@ ac-file-extensions@^1.2.0:
     ac-semantic-release "^0.2.5"
     lodash "^4.17.20"
 
-ac-sanitizer@^3.3.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.4.0.tgz#40105318b38ab90005004919b7cf03728e7f3ece"
-  integrity sha512-nQtanmkjSf5LcyBSat0/bHo1by2VYHhkjdztx6bfKhLGlVRz9upIg052EmSkA7CXriqNAoJVOezO4shPZxND0g==
+ac-sanitizer@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.4.1.tgz#cf6c15f6de9d65482f2acfc1ee1096d677f5f256"
+  integrity sha512-PyxmHTEJPsCmaD3TsTRHi/e9VajTbQcbQCSrw/e/InzogFk0j6VMWZWSNwshTeQ0PfotPlNHF0bR3TaingYZWw==
   dependencies:
     ac-countrylist "^1.0.1"
     ac-file-extensions "^1.2.0"
