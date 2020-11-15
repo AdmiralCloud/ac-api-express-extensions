@@ -1,3 +1,18 @@
+<a name="0.2.1"></a>
+
+## [0.2.1](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.0..v0.2.1) (2020-11-15 13:43:23)
+
+
+### Bug Fix
+
+* **Misc:** Add helper function to find deprecated fields | MP | [fd7a1368f8a38f25fc74a37a9df31c8c2ec63e18](https://github.com/mmpro/ac-api-express-extensions/commit/fd7a1368f8a38f25fc74a37a9df31c8c2ec63e18)    
+Add helper function find marked fields, e.g. deprecated fields.
+### Chores
+
+* **Misc:** Updated ac-sanitizer | MP | [f908852a6173cba979574b4cbcafaab253356dba](https://github.com/mmpro/ac-api-express-extensions/commit/f908852a6173cba979574b4cbcafaab253356dba)    
+Updated ac-sanitizer
+* **sanitizer:** Updated packages | MP | [5e2a41f42e5b96c45514caa7f293b7c5dff39aa9](https://github.com/mmpro/ac-api-express-extensions/commit/5e2a41f42e5b96c45514caa7f293b7c5dff39aa9)    
+Updated packages
 <a name="0.2.0"></a>
  
 # [0.2.0](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.11..v0.2.0) (2020-11-15 10:45:31)
