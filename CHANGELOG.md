@@ -1,3 +1,12 @@
+<a name="0.2.0"></a>
+ 
+# [0.2.0](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.11..v0.2.0) (2020-11-15 10:45:31)
+
+
+### Feature
+
+* **Misc:** New function to return defaultValues | MP | [e9dcc9ad99f1be73a20e1ab9e19b626907308507](https://github.com/mmpro/ac-api-express-extensions/commit/e9dcc9ad99f1be73a20e1ab9e19b626907308507)    
+Added a new function to return defaultValues based on APIdoc definitions
 <a name="0.1.11"></a>
 
 ## [0.1.11](https://github.com/mmpro/ac-api-express-extensions/compare/v0.1.10..v0.1.11) (2020-11-09 20:57:53)
