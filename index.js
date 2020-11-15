@@ -12,6 +12,37 @@ const acaee = () => {
   }
 
   // PUBLIC
+  /**
+   * Returns the default object for a given model (and path/field)
+   * @param params.field - the array of fields with field definitions from apiDoc
+   * @param paams.field - the field to use
+   * @param params.path - at the beginning identical to field. During process it shows the path to each field
+   * @param params.defaultValue - during recursive calls it contains the whole object
+   */
+  const defaultValues = (params) => {
+    const fields = _.get(params, 'fields')
+    const field = _.get(params, 'field')
+    const path = _.get(params, 'path', field)
+
+    const fieldDef = _.find(fields, { field })
+    const defaultValue = _.get(params, 'defaultValue', {})
+
+    if (_.get(fieldDef, 'defaultsTo')) {
+      _.set(defaultValue, path, _.get(fieldDef, 'defaultsTo'))     
+    }
+    if (_.get(fieldDef, 'properties')) {
+      _.forEach(_.get(fieldDef, 'properties'), prop => {
+        defaultValues({
+          fields: _.get(fieldDef, 'properties'),
+          field: prop.field,
+          path: path + '.' + prop.field,
+          defaultValue
+        })
+      })
+    }
+    return defaultValue
+  }
+
   const prepareDocumentation = (params) => {
     const controller = _.get(params, 'controller')
     const action = _.toLower(_.get(params, 'action'))
@@ -352,6 +383,7 @@ const acaee = () => {
   }
 
   return {
+    defaultValues,
     apidocRoute,
     allParams,
     sanitizer
