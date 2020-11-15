@@ -138,3 +138,64 @@ GET /v1/user/apidoc
 }]
 
 ```
+
+## defaultValues
+Use this function to get the default values for a given object (in APIdoc)
+
+```
+const def = {
+  fields: [{
+    field: 'field1',
+    type: 'string'
+    ...
+  }, {
+    field: 'field2',
+    type: 'object',
+    properties: [{
+      field: 'prop1',
+      type: 'string,
+      defaultsTo: 'Prop1 default value'
+    }]
+  }]
+}
+
+const defaultObject = acaee.defaultValues({
+  fields: def.fields,
+  field: 'field2'
+})
+
+// response
+{
+  field2: {
+    prop1: 'Prop1 default value'
+  }
+}
+```
+
+## fetch marked fields
+Use this function to get a list of fields with special markers (e.g. deprecation markers)
+
+```
+const def = {
+  fields: [{
+    field: 'field1',
+    type: 'string'
+    deprecated: true
+  }, {
+    field: 'field2',
+    type: 'object',
+    properties: [{
+      field: 'prop1',
+      type: 'string,
+      deprecated: true
+    }]
+  }]
+}
+
+const defaultObject = acaee.markedFields({
+  fields: def.fields
+})
+
+// response
+['field1', 'field2.prop1']
+```

@@ -43,6 +43,36 @@ const acaee = () => {
     return defaultValue
   }
 
+  /**
+   * Returns fields (as array) which are marked (e.g. deprecated)
+   * 
+   * @param params.fields - the field definitions for APIdoc
+   * @param params.marker - optional marker to look for, defaults to "deprecated"
+   * @param params.response - response array during process
+   * @param params.path - path set during recursive process 
+   */
+  const markedFields = (params) => {
+    const fields = _.get(params, 'fields')
+    const marker = _.get(params, 'marker', 'deprecated')
+    const response = _.get(params, 'response', [])
+    const path = _.get(params, 'path')
+
+    _.forEach(fields, field => {
+      if (_.get(field, marker)) {
+        response.push((path ? path + '.' : '') + field.field)
+      }
+      if (_.get(field, 'properties')) {
+        markedFields({
+          fields: field.properties,
+          marker,
+          response,
+          path: (path ? path + '.' : '') + field.field
+        })
+      }
+    })
+    return response
+  }
+
   const prepareDocumentation = (params) => {
     const controller = _.get(params, 'controller')
     const action = _.toLower(_.get(params, 'action'))
@@ -384,6 +414,7 @@ const acaee = () => {
 
   return {
     defaultValues,
+    markedFields,
     apidocRoute,
     allParams,
     sanitizer
