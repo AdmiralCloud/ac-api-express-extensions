@@ -44,7 +44,7 @@
   resolved "https://registry.yarnpkg.com/@ungap/promise-all-settled/-/promise-all-settled-1.1.2.tgz#aa58042711d6e3275dd37dc597e5d31e8c290a44"
   integrity sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==
 
-ac-countrylist@^1.0.1:
+ac-countrylist@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/ac-countrylist/-/ac-countrylist-1.0.5.tgz#de0ea63288ae86e088a8cc8f816d6f4a16276973"
   integrity sha512-Uvx6wzmwZYMjOe0IqeZZG6qjqYzTIcvw3Upis2ZXrLxC8jj6sF44gPtuEcwz2z1GJ7rdmDGwsk8PPQR9h+52zA==
@@ -59,15 +59,15 @@ ac-file-extensions@^1.2.0:
     ac-semantic-release "^0.2.5"
     lodash "^4.17.20"
 
-ac-sanitizer@^3.4.1:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.4.2.tgz#eb07b26321b1c69c49c862cf96c01766a9bcd3e1"
-  integrity sha512-hrJpZC1TUQ5KFiCIEam2IQVv917XWSRtQinu/Tnga5363ntbfesOxKqkUl3IPyjhIyShUr6frT9EhQT4evbtGw==
+ac-sanitizer@^3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.4.3.tgz#15712a5ae38635d115c83a1ca9e0b1ca2d712865"
+  integrity sha512-aeqrdteb84NMIDNtwOOPvWSU3SavlBYXnk0Y9a5Br/nRYdDB0V0M0fLK5PmaIMli88IXO/RLRxZXHdAn5GQHPg==
   dependencies:
-    ac-countrylist "^1.0.1"
+    ac-countrylist "^1.0.5"
     ac-file-extensions "^1.2.0"
     debug "^4.2.0"
-    hashids "^2.2.1"
+    hashids "^2.2.2"
     lodash "^4.17.20"
     validator "^13.1.17"
 
@@ -653,7 +653,7 @@ has-flag@^4.0.0:
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
-hashids@^2.2.1:
+hashids@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/hashids/-/hashids-2.2.2.tgz#5381257b34f0d0aca2063967b14a30a9312f650d"
   integrity sha512-nqH06JLFeBBCg31jYSArbOs/XddTdnHSul/hb6XbrWg/UlUWFQc9KR21sVLoGKQGKPW1D3zgTgTew0oY7nhrhQ==
