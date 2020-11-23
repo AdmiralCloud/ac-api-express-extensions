@@ -320,6 +320,11 @@ const acaee = () => {
       }
     })
     req.allParams = () => { return all }
+    if (_.get(req.headers, 'x-admiralcloud-hash')) {
+      // USED FOR SIGNED PAYLOADs - it will be unchanged from the original request, while allParams will be sanitized and enhanced with defaults
+      const original = _.cloneDeep(all)
+      req.allParamsOriginal = () => { return original }  
+    }
     return next()
   }
 
