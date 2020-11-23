@@ -1,3 +1,12 @@
+<a name="0.2.4"></a>
+
+## [0.2.4](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.3..v0.2.4) (2020-11-23 15:33:18)
+
+
+### Bug Fix
+
+* **allParams:** Minor typo fix | MP | [ea5e24bef42010850c747e731aa3f6ebf160d96a](https://github.com/mmpro/ac-api-express-extensions/commit/ea5e24bef42010850c747e731aa3f6ebf160d96a)    
+Clone before adding variable all to function
 <a name="0.2.3"></a>
 
 ## [0.2.3](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.2..v0.2.3) (2020-11-23 14:16:25)
