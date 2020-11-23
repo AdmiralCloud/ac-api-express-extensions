@@ -1,3 +1,12 @@
+<a name="0.2.3"></a>
+
+## [0.2.3](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.2..v0.2.3) (2020-11-23 14:16:25)
+
+
+### Bug Fix
+
+* **allParams:** Use a clone of sent params for signed payloads | MP | [f34665af100e27c294ea86a0414594c0a800d3ce](https://github.com/mmpro/ac-api-express-extensions/commit/f34665af100e27c294ea86a0414594c0a800d3ce)    
+allParams will be sanitized and enhanced, e.g. with defaultValues. So there might be a payload difference to the originally signed payload. To check the signed payload/hash we must check the original payload.
 <a name="0.2.2"></a>
 
 ## [0.2.2](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.1..v0.2.2) (2020-11-17 12:40:19)
