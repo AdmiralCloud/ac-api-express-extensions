@@ -1,3 +1,16 @@
+<a name="0.2.5"></a>
+
+## [0.2.5](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.4..v0.2.5) (2020-12-06 15:17:11)
+
+
+### Bug Fix
+
+* **apidocRoute:** Make prepareDocumentation available | MP | [db8c30a03be01560f76aa13ff6114981aaedff30](https://github.com/mmpro/ac-api-express-extensions/commit/db8c30a03be01560f76aa13ff6114981aaedff30)    
+In order to create manual docs, the prepareDocumentation function is now publicly available
+### Chores
+
+* **Misc:** Updated packages | MP | [0dc459478a7905911892c1d60a4687c4bcec344a](https://github.com/mmpro/ac-api-express-extensions/commit/0dc459478a7905911892c1d60a4687c4bcec344a)    
+Updated packages
 <a name="0.2.4"></a>
 
 ## [0.2.4](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.3..v0.2.4) (2020-11-23 15:33:18)
