@@ -420,6 +420,7 @@ const acaee = () => {
   return {
     defaultValues,
     markedFields,
+    prepareDocumentation,
     apidocRoute,
     allParams,
     sanitizer
