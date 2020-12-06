@@ -6,13 +6,13 @@
   "author": "Mark Poepping <mark.poepping@mmpro.de>",
   "license": "MIT",
   "dependencies": {
-    "ac-sanitizer": "^3.4.3",
+    "ac-sanitizer": "^3.5.0",
     "is-number": "^7.0.0"
   },
   "devDependencies": {
     "ac-semantic-release": "^0.2.5",
     "chai": "^4.2.0",
-    "eslint": "^7.12.1",
+    "eslint": "^7.15.0",
     "mocha": "^8.2.0"
   },
   "scripts": {
