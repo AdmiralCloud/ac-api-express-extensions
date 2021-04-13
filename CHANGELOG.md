@@ -1,3 +1,12 @@
+<a name="0.2.9"></a>
+
+## [0.2.9](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.8..v0.2.9) (2021-04-13 15:43:00)
+
+
+### Bug Fix
+
+* **Misc:** Updated packages | MP | [ef1297021d2cb3bd59331c15b1308a2664395c99](https://github.com/mmpro/ac-api-express-extensions/commit/ef1297021d2cb3bd59331c15b1308a2664395c99)    
+Updated packages
 <a name="0.2.8"></a>
 
 ## [0.2.8](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.7..v0.2.8) (2021-03-26 06:54:20)
