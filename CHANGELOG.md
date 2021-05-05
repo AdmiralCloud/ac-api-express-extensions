@@ -1,3 +1,12 @@
+<a name="0.2.12"></a>
+
+## [0.2.12](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.11..v0.2.12) (2021-05-05 08:57:40)
+
+
+### Bug Fix
+
+* **sanitizer:** Updated ac-sanitizer | MP | [e046877b8ea8d7602532a455ecbac997ce9fd9c9](https://github.com/mmpro/ac-api-express-extensions/commit/e046877b8ea8d7602532a455ecbac997ce9fd9c9)    
+Updated ac-sanitizer
 <a name="0.2.11"></a>
 
 ## [0.2.11](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.10..v0.2.11) (2021-05-02 10:55:49)
