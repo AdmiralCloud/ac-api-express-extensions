@@ -339,7 +339,7 @@ const acaee = () => {
           field.required = _.get(params, _.get(r, 'condition.field')) === _.get(r, 'condition.value')
         }
         else {
-          field.required = _.get(params, _.get(r, 'condition.field'))
+          field.required = _.get(r, 'condition.field')
         }
       }
       else if (r) {
