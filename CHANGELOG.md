@@ -1,3 +1,16 @@
+<a name="0.2.15"></a>
+
+## [0.2.15](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.14..v0.2.15) (2021-05-06 17:03:08)
+
+
+### Bug Fix
+
+* **sanitizer:** Minor fix for required, if required is a field path | MP | [8359ff84386f80710488975454a8462dd7e17806](https://github.com/mmpro/ac-api-express-extensions/commit/8359ff84386f80710488975454a8462dd7e17806)    
+Do not use value but field path
+### Chores
+
+* **Misc:** Updated packages | MP | [e49a9e69091789c299eb05d9c3c4dc846cfea12f](https://github.com/mmpro/ac-api-express-extensions/commit/e49a9e69091789c299eb05d9c3c4dc846cfea12f)    
+Updated packages
 <a name="0.2.14"></a>
 
 ## [0.2.14](https://github.com/mmpro/ac-api-express-extensions/compare/v0.2.13..v0.2.14) (2021-05-05 14:29:17)
