@@ -66,10 +66,10 @@ ac-ip@^1.3.5:
     ip "^1.1.5"
     lodash "4.x"
 
-ac-sanitizer@^3.9.4:
-  version "3.9.4"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.9.4.tgz#6bc6f0d6aa673e5ed1cdbb814a9455214fe5fceb"
-  integrity sha512-Lxx0gCReSY4oxjhN8iWa4DCMhDr6966vt34iSSGyPj5bQdoMIs2JLplkSHDuKOGLkun4PuzNyH6UeOm73PPYnQ==
+ac-sanitizer@^3.9.5:
+  version "3.9.5"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.9.5.tgz#8bb903647fdc169efafdd20cca358dcb6d0608e7"
+  integrity sha512-v6pxIpFubvGHr5NOIWZ5rIVHOaBaSaWK2xzonkmd1YojWKW5RmASv0o44yJisvzifBKHf0LuQr1BhUqkiFLruQ==
   dependencies:
     ac-countrylist "^1.0.5"
     ac-file-extensions "^1.2.0"
@@ -975,10 +975,10 @@ minimatch@3.0.4, minimatch@^3.0.4:
   dependencies:
     brace-expansion "^1.1.7"
 
-mocha@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-9.0.0.tgz#67ce848170cb6426f9e84c57e38376dc9017bab4"
-  integrity sha512-GRGG/q9bIaUkHJB9NL+KZNjDhMBHB30zW3bZW9qOiYr+QChyLjPzswaxFWkI1q6lGlSL28EQYzAi2vKWNkPx+g==
+mocha@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-9.0.1.tgz#01e66b7af0012330c0a38c4b6eaa6d92b8a81bf9"
+  integrity sha512-9zwsavlRO+5csZu6iRtl3GHImAbhERoDsZwdRkdJ/bE+eVplmoxNKE901ZJ9LdSchYBjSCPbjKc5XvcAri2ylw==
   dependencies:
     "@ungap/promise-all-settled" "1.1.2"
     ansi-colors "4.1.1"
