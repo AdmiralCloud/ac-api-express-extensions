@@ -3,17 +3,18 @@
   "version": "0.2.19",
   "description": "AdmiralCloud ExpressJS extensions for your API",
   "main": "index.js",
-  "author": "Mark Poepping <mark.poepping@mmpro.de>",
+  "repository": "admiralcloud/ac-api-express-extensions",
+  "author": "Mark Poepping <mark.poepping@admiralcloud.com>",
   "license": "MIT",
   "dependencies": {
-    "ac-sanitizer": "^3.9.5",
+    "ac-sanitizer": "^3.9.6",
     "is-number": "^7.0.0"
   },
   "devDependencies": {
-    "ac-semantic-release": "^0.2.6",
+    "ac-semantic-release": "^0.2.7",
     "chai": "^4.3.4",
-    "eslint": "^7.28.0",
-    "mocha": "^9.0.1"
+    "eslint": "^7.32.0",
+    "mocha": "^9.1.2"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha  --timeout 60000 --bail --exit --slow 1000 --colors ./test.js || :"
