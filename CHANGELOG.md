@@ -1,3 +1,14 @@
+<a name="0.2.22"></a>
+
+## [0.2.22](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.21..v0.2.22) (2021-11-27 15:04:58)
+
+
+### Bug Fix
+
+* **Misc:** Function mapFieldDefinition is now public | MP | [14e3af8fd5f25b9bae0535877a0f2cd029aebe5a](https://github.com/admiralcloud/ac-api-express-extensions/commit/14e3af8fd5f25b9bae0535877a0f2cd029aebe5a)    
+Function mapFieldDefinition is now public
+* **Misc:** Package updates | MP | [335e57be7d154846d33c175d670afaa7b604a0a1](https://github.com/admiralcloud/ac-api-express-extensions/commit/335e57be7d154846d33c175d670afaa7b604a0a1)    
+Package updates
 <a name="0.2.21"></a>
 
 ## [0.2.21](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.20..v0.2.21) (2021-10-09 17:33:51)
