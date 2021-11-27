@@ -423,6 +423,7 @@ const acaee = () => {
     prepareDocumentation,
     apidocRoute,
     allParams,
+    mapFieldDefinition,
     sanitizer
   }
 }
