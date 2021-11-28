@@ -1,3 +1,13 @@
+<a name="0.2.23"></a>
+
+## [0.2.23](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.22..v0.2.23) (2021-11-28 08:10:32)
+
+
+### Bug Fix
+
+* **sanitizer:** Add option checkPayload for testmode | MP | [f5ce81e6cdee73d4a8c5cc7f25e7d5d5c12481af](https://github.com/admiralcloud/ac-api-express-extensions/commit/f5ce81e6cdee73d4a8c5cc7f25e7d5d5c12481af)    
+In testmode you can use payload parameter checkPayload to only check the payload (helpful for tests)  
+Related issues: [admiralcloud/ac-api-express-extensions#1](https://github.com/admiralcloud/ac-api-express-extensions/issues/1) [mmpro/ac-api-server#340](https://github.com/mmpro/ac-api-server/issues/340)
 <a name="0.2.22"></a>
 
 ## [0.2.22](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.21..v0.2.22) (2021-11-27 15:04:58)
