@@ -387,6 +387,7 @@ const acaee = () => {
     if (_.isEmpty(def)) return next()
 
     let params = req.allParams()
+    const checkPayload = _.get(params, 'checkPayload')
 
     let fields = _.get(def, 'fields')
     // filter by actions
@@ -412,6 +413,10 @@ const acaee = () => {
     const check = acsanitizer.checkAndSanitizeValues(fieldsToCheck)
     if (_.get(check, 'error')) return res.miscError(_.get(check, 'error'))
     else params = _.get(check, 'params')
+
+    if (_.get(config, 'environment') === 'test' && checkPayload) {
+      return res.json(params)  
+    }
     
     req.allParams = () => { return params }
     return next()

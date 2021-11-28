@@ -69,6 +69,9 @@ GET /v1/user?firstname=tom&lastname=dooley
 // -> req.allParams() = { lastname: dooley }
 ```
 
+### Usage in testmode
+You can use sanitizer in testmode to only check the payload and the result. If you add checkPayload=true to your request and you are in testmode (NODE_ENV=test) the payload will be checked and either return an error or returns the sanitized payload. The process then ends here, no further (middleware) actions are called.
+
 **ATTENTION**   
 Please keep in mind, that this sanitizer required allParams, so make sure to have it in your express middleware array BEFORE the sanitizer. 
 
