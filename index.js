@@ -11,6 +11,10 @@ const acaee = () => {
     }))
   }
 
+  // field properties that can be string or object (if differs for different actions)
+  const objFields = [{ docField: 'enumFor', property: 'enum' }]
+
+
   // PUBLIC
   /**
    * Returns the default object for a given model (and path/field)
@@ -106,12 +110,31 @@ const acaee = () => {
       if (indexOfCI(_.get(field, 'actions'), responseAction)) return field
     }), 'field')
 
+    // filter out fields which are marked as noDocumentation = true
+    requestFields = _.filter(requestFields, field => {
+      if (!_.get(field, 'noDocumentation')) return field
+    })
+    responseFields = _.filter(responseFields, field => {
+      if (!_.get(field, 'noDocumentation')) return field
+    })
+
+
     const prepareFields = (fields, httpMethod) => {
       const fieldParameters = {
         request: ['field', 'type', 'required', 'description', 'location', 'properties', 'defaultsTo', 'enum'],
         response: ['field', 'type', 'description', 'properties', 'defaultsTo', 'enum', 'nullAllowed']
       }
       return _.map(fields, f => { 
+        // fields that can be an array (value differs for different actions) or strings
+        _.forEach(objFields, objField => {
+          // only convert if array
+          let apiDocField = _.get(f, objField.docField)
+          if (_.isArray(apiDocField)) {
+            let item = _.find(apiDocField, { action })
+            _.set(f, objField.property, _.get(item, 'value'))
+          }
+        })
+        
         let required = _.find(f.requiredFor, { action })
         if (required) {
           if (_.get(required, 'condition')) {
@@ -124,6 +147,7 @@ const acaee = () => {
         else {
           f.required = false
         }
+
         let nullAllowed = _.find(f.nullAllowedFor, { action }) || _.find(f.nullAllowedFor, { action: httpMethod })
         if (nullAllowed) f.nullAllowed = true
 
@@ -350,6 +374,16 @@ const acaee = () => {
         field.customErrorMessage = _.get(r, 'customErrorMessage')
       }
     }
+
+    // fields that can be an array (value differs for different actions) or strings
+    _.forEach(objFields, objField => {
+      // only convert if array
+      let apiDocField = _.get(field, objField.docField)
+      if (_.isArray(apiDocField)) {
+        let item = _.find(apiDocField, { action })
+        _.set(field, objField.property, _.get(item, 'value'))
+      }
+    })
 
     // range can be set with variables (e.g. if you want a time frame)
     // if so, do not define range itself, but use rangeDef with properties type (timestamp) and deviation
