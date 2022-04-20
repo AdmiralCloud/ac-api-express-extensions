@@ -1,3 +1,16 @@
+<a name="0.2.25"></a>
+
+## [0.2.25](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.24..v0.2.25) (2022-04-20 19:08:09)
+
+
+### Bug Fix
+
+* **Misc:** Fixed using chai expect | MP | [29dacc8636cc13775f8d01713e6fd07453ccc7be](https://github.com/admiralcloud/ac-api-express-extensions/commit/29dacc8636cc13775f8d01713e6fd07453ccc7be)    
+Fixed using chai expect  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+* **Misc:** New field parameters | MP | [2e36052c7359862ab6a0f579c97ab18b2a90f39c](https://github.com/admiralcloud/ac-api-express-extensions/commit/2e36052c7359862ab6a0f579c97ab18b2a90f39c)    
+Do not add fields to APIdoc by setting property noDocumentation to true. Use property enumFor as array of objecs - similar to requiredFor - to have fine-grained control of enum on per-action base.  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 <a name="0.2.24"></a>
 
 ## [0.2.24](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.23..v0.2.24) (2022-04-20 11:42:27)
