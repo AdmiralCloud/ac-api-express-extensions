@@ -1,4 +1,5 @@
-require('chai/register-expect')
+const { expect } = require('chai')
+
 
 const _  = require('lodash')
 const acaee = require('./index')
