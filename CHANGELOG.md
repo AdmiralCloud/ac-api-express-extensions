@@ -1,3 +1,13 @@
+<a name="0.2.27"></a>
+
+## [0.2.27](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.26..v0.2.27) (2022-04-22 17:01:53)
+
+
+### Bug Fix
+
+* **Misc:** New function to fetch field definition for a given field, controller and action | MP | [c16e1e6d77ffdb9254120ad31d9d7d20f51d10fb](https://github.com/admiralcloud/ac-api-express-extensions/commit/c16e1e6d77ffdb9254120ad31d9d7d20f51d10fb)    
+New function to fetch field definition for a given field, controller and action  
+Related issues: [/issues#undefined](https://github.com//issues/undefined)
 <a name="0.2.26"></a>
 
 ## [0.2.26](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.25..v0.2.26) (2022-04-22 16:55:36)
