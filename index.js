@@ -398,7 +398,7 @@ const acaee = () => {
     }
 
     // check and set defaultsTo
-    if (_.get(field, 'defaultsTo') && !_.has(params, field.field)) {
+    if (_.has(field, 'defaultsTo') && !_.has(params, field.field)) {
       _.set(params, field.field, _.get(field, 'defaultsTo'))
     }
 
