@@ -202,3 +202,19 @@ const defaultObject = acaee.markedFields({
 // response
 ['field1', 'field2.prop1']
 ```
+
+## fieldDefinition
+Return the definition for a given field, controller and action. 
+
+```
+// Example use in an internal function
+
+let field = acapi.helpers.fieldDefinition(acapi.config, 'fieldname', 'controller', 'action')
+const fieldsToCheck = {
+  params: { fieldname: ['metadata', 'tags', 'auto'] },
+  fields: [
+    field
+  ]
+}
+let check = sanitizer.checkAndSanitizeValues(fieldsToCheck)
+```

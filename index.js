@@ -456,6 +456,19 @@ const acaee = () => {
     return next()
   }
 
+    /**
+   * Return entry for sanitizer for a given field (and controller/action)
+   */
+     const fieldDefinition = (config, field, controller, action) => {
+      const def = _.get(config.apiDoc, controller)
+      if (!def) return { message: 'noAPIdoc', additionalInfo: { controller, action } }
+      let fields = _.get(def, 'fields')
+      let fieldToUse = _.find(fields, f => {
+        if (_.indexOf(_.get(f, 'actions'), action) > -1 && _.get(f, 'field') === field) return f
+      })
+      return mapFieldDefinition(fieldToUse, action)
+    }
+
   return {
     defaultValues,
     markedFields,
@@ -463,7 +476,8 @@ const acaee = () => {
     apidocRoute,
     allParams,
     mapFieldDefinition,
-    sanitizer
+    sanitizer,
+    fieldDefinition
   }
 }
 
