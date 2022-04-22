@@ -1,3 +1,18 @@
+<a name="0.2.26"></a>
+
+## [0.2.26](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.25..v0.2.26) (2022-04-22 16:55:36)
+
+
+### Bug Fix
+
+* **allParams:** Allow default value of 0 | MP | [e501dfa78e02e2bb2f2010501fc8dad53023bdcf](https://github.com/admiralcloud/ac-api-express-extensions/commit/e501dfa78e02e2bb2f2010501fc8dad53023bdcf)    
+Allow default value of 0  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+### Chores
+
+* **Misc:** Updated packages | MP | [a3e8e7a6b0bfac4d0a09ec65d458216d9502727d](https://github.com/admiralcloud/ac-api-express-extensions/commit/a3e8e7a6b0bfac4d0a09ec65d458216d9502727d)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 <a name="0.2.25"></a>
 
 ## [0.2.25](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.24..v0.2.25) (2022-04-20 19:08:09)
