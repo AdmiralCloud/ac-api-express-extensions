@@ -1,3 +1,16 @@
+<a name="0.2.28"></a>
+
+## [0.2.28](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.27..v0.2.28) (2022-04-23 17:13:59)
+
+
+### Bug Fix
+
+* **sanitizer:** Typo fix | MP | [813937a7885beb15f90ae8c3310f9fb28b558959](https://github.com/admiralcloud/ac-api-express-extensions/commit/813937a7885beb15f90ae8c3310f9fb28b558959)    
+Clone at proper position  
+Related issues: [Clone fields for fieldDefinition function/issues#undefined](https://github.com/Clone fields for fieldDefinition function/issues/undefined)
+* **sanitizer:** Honor actions for properties | MP | [a98360c345de6c1fb0cc4532263ac519e6d8afa1](https://github.com/admiralcloud/ac-api-express-extensions/commit/a98360c345de6c1fb0cc4532263ac519e6d8afa1)    
+If actions are set for properties, use them too.  
+Related issues: [/issues#undefined](https://github.com//issues/undefined)
 <a name="0.2.27"></a>
 
 ## [0.2.27](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.26..v0.2.27) (2022-04-22 17:01:53)
