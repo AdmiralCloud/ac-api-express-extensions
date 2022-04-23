@@ -403,6 +403,11 @@ const acaee = () => {
     }
 
     if (_.get(field, 'properties')) {
+      // filter properties by actions (if actions is set)
+      field.properties = _.filter(field.properties, prop => {
+        if (!_.get(prop, 'actions') || _.get(prop, 'actions').includes(prop)) return field
+      })
+
       field.properties = _.map(field.properties, prop => {
         return mapFieldDefinition(prop, action, params)
       })
@@ -423,7 +428,7 @@ const acaee = () => {
     let params = req.allParams()
     const checkPayload = _.get(params, 'checkPayload')
 
-    let fields = _.get(def, 'fields')
+    let fields = _.cloneDeep(_.get(def, 'fields'))
     // filter by actions
     fields = _.filter(fields, field => {
       if (!_.get(field, 'actions')) return field
