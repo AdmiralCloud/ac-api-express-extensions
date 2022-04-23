@@ -428,7 +428,7 @@ const acaee = () => {
     let params = req.allParams()
     const checkPayload = _.get(params, 'checkPayload')
 
-    let fields = _.cloneDeep(_.get(def, 'fields'))
+    let fields = _.get(def, 'fields')
     // filter by actions
     fields = _.filter(fields, field => {
       if (!_.get(field, 'actions')) return field
@@ -467,7 +467,7 @@ const acaee = () => {
      const fieldDefinition = (config, field, controller, action) => {
       const def = _.get(config.apiDoc, controller)
       if (!def) return { message: 'noAPIdoc', additionalInfo: { controller, action } }
-      let fields = _.get(def, 'fields')
+      let fields = _.cloneDeep(_.get(def, 'fields'))
       let fieldToUse = _.find(fields, f => {
         if (_.indexOf(_.get(f, 'actions'), action) > -1 && _.get(f, 'field') === field) return f
       })
