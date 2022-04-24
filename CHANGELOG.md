@@ -1,3 +1,18 @@
+<a name="0.2.29"></a>
+
+## [0.2.29](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.28..v0.2.29) (2022-04-24 08:06:49)
+
+
+### Bug Fix
+
+* **sanitizer:** Clone fields before sanitizing | MP | [3037fe1390d06cce8c2b2bd0cddec20af3ae7126](https://github.com/admiralcloud/ac-api-express-extensions/commit/3037fe1390d06cce8c2b2bd0cddec20af3ae7126)    
+Without cloning fields might be removed by filtering for actions.  
+Related issues: [/issues#undefined](https://github.com//issues/undefined)
+### Chores
+
+* **Misc:** Updated packages | MP | [6df60323cb06d17be9ebe7d4de24b6036b492bd4](https://github.com/admiralcloud/ac-api-express-extensions/commit/6df60323cb06d17be9ebe7d4de24b6036b492bd4)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 <a name="0.2.28"></a>
 
 ## [0.2.28](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.27..v0.2.28) (2022-04-23 17:13:59)
