@@ -59,10 +59,10 @@ ac-ip@^1.3.7:
     ip "^1.1.5"
     lodash "4.x"
 
-ac-sanitizer@^3.9.15:
-  version "3.9.15"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.9.15.tgz#f3b41ac9aa24a94328730696e4a93961cfb124bc"
-  integrity sha512-bjJ4s0AeyhU0zBDfvO0gVxDBdsBT8ZwlIaehmK9eoGVCSO/Ue7V5Fa+glEualwoBiY/6ftSZn5s2vjTpIhHjjw==
+ac-sanitizer@^3.9.16:
+  version "3.9.16"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-3.9.16.tgz#8a937a22b56d927fdd84021e767ed9d0ae358bb6"
+  integrity sha512-pZcuPOmR2+6MU155yXHfdFNEiqzmwuVYeTUfb0ZT36i90wCzTQttKKc83IK6o31PuAdrpRbbeoC9nmIeIRCyjA==
   dependencies:
     ac-countrylist "^1.0.6"
     ac-file-extensions "^2.0.5"
