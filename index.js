@@ -428,7 +428,7 @@ const acaee = () => {
     let params = req.allParams()
     const checkPayload = _.get(params, 'checkPayload')
 
-    let fields = _.get(def, 'fields')
+    let fields = _.cloneDeep(_.get(def, 'fields'))
     // filter by actions
     fields = _.filter(fields, field => {
       if (!_.get(field, 'actions')) return field
