@@ -1,3 +1,18 @@
+<a name="0.2.34"></a>
+
+## [0.2.34](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.33..v0.2.34) (2022-04-24 19:39:41)
+
+
+### Bug Fix
+
+* **sanitizer:** Updated ac-sanitizer | MP | [39ee9fe48bd53bccf122d3992f5dbdf534c9d929](https://github.com/admiralcloud/ac-api-express-extensions/commit/39ee9fe48bd53bccf122d3992f5dbdf534c9d929)    
+Updated ac-sanitizer  
+Related issues: [/issues#undefined](https://github.com//issues/undefined)
+### Style
+
+* **Misc:** Formatted file | MP | [cecb6063ff3f14de414175af718e6e89b9595fe7](https://github.com/admiralcloud/ac-api-express-extensions/commit/cecb6063ff3f14de414175af718e6e89b9595fe7)    
+Formatted file  
+Related issues: [/issues#undefined](https://github.com//issues/undefined)
 <a name="0.2.33"></a>
 
 ## [0.2.33](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.32..v0.2.33) (2022-04-24 18:45:53)
