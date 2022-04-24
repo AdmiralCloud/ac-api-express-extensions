@@ -1,3 +1,14 @@
+<a name="0.2.30"></a>
+
+## [0.2.30](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.29..v0.2.30) (2022-04-24 14:24:47)
+
+
+### Bug Fix
+
+* **Misc:** Updated ac-sanitizer | MP | [6aa77a236ac3588388c268bf67a45dd48973c64f](https://github.com/admiralcloud/ac-api-express-extensions/commit/6aa77a236ac3588388c268bf67a45dd48973c64f)    
+Update package to allow empty string for integer  
+string  
+Related issues: [/issues#undefined](https://github.com//issues/undefined)
 <a name="0.2.29"></a>
 
 ## [0.2.29](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.28..v0.2.29) (2022-04-24 08:06:49)
