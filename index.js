@@ -83,6 +83,7 @@ const acaee = () => {
     const { method, path, deprecated, beta, experimental } = _.get(params, 'route')
     const apiDoc = _.get(params, 'apiDoc')
     const name = _.get(params, 'route.name', action)
+    const responseName = _.get(params, 'responseName')
 
     const def = _.get(apiDoc, controller)
     if (_.isEmpty(def)) return {}
@@ -100,6 +101,7 @@ const acaee = () => {
     // filter by actions (default response, alternative response.ACTION)
     let responseFields = _.cloneDeep(_.get(def, 'fields'))
     let responseAction = 'response'
+    if (responseName) responseAction += '.' + responseName
     _.some(responseFields, field => {
       if (indexOfCI(_.get(field, 'actions'), 'response.' + action)) {
         responseAction = 'response.' + action
@@ -285,6 +287,7 @@ const acaee = () => {
     const apiDoc = (req, res) => {
       const name = _.get(req.query, 'name')
       const response = []
+      const responseName = _.get(req.query, 'responseName')
       _.forEach(availableActions, action => {
         let route = _.find(routes, { action })
         let routeName = _.get(route, 'name', _.get(route, 'action'))
@@ -293,7 +296,8 @@ const acaee = () => {
             controller: controllerName,
             action,
             route,
-            apiDoc: _.get(config, 'apiDoc')
+            apiDoc: _.get(config, 'apiDoc'),
+            responseName
           })
           if (doc) response.push(doc)  
         }
