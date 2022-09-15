@@ -1,3 +1,18 @@
+<a name="0.2.40"></a>
+
+## [0.2.40](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.39..v0.2.40) (2022-09-15 10:40:26)
+
+
+### Bug Fix
+
+* **apidocRoute:** Add more flexibility for response object in APIdocs | MP | [937a15eba4e244e7596d93c20c7146bf7626772f](https://github.com/admiralcloud/ac-api-express-extensions/commit/937a15eba4e244e7596d93c20c7146bf7626772f)    
+Currently only response or response.ACTION was posssible as actions in APIdoc. Now you can use other response actions like response.singleTag and use them by adding query parameter responseName=singleTag to your APIdoc query  
+Related issues: [/issues#undefined](https://github.com//issues/undefined)
+### Chores
+
+* **Misc:** Updated packages | MP | [90e026eff340651087213034832a50b90114b8ab](https://github.com/admiralcloud/ac-api-express-extensions/commit/90e026eff340651087213034832a50b90114b8ab)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 <a name="0.2.39"></a>
 
 ## [0.2.39](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.38..v0.2.39) (2022-07-23 06:56:08)
