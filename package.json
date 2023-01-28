@@ -11,10 +11,10 @@
     "is-number": "^7.0.0"
   },
   "devDependencies": {
-    "ac-semantic-release": "^0.3.3",
-    "chai": "^4.3.6",
-    "eslint": "^8.23.1",
-    "mocha": "^10.0.0"
+    "ac-semantic-release": "^0.3.4",
+    "chai": "^4.3.7",
+    "eslint": "^8.32.0",
+    "mocha": "^10.2.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha  --timeout 60000 --bail --exit --slow 1000 --colors ./test.js || :"
