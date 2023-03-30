@@ -1,3 +1,15 @@
+<a name="1.0.0"></a>
+ 
+# [1.0.0](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.42..v1.0.0) (2023-03-30 16:08:37)
+
+
+### Bug Fix
+
+* **Misc:** Package updates | MP | [f40a31fb1f9ca6ae45e267f0fb63cf129c147e08](https://github.com/admiralcloud/ac-api-express-extensions/commit/f40a31fb1f9ca6ae45e267f0fb63cf129c147e08)    
+Package updates  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+## BREAKING CHANGES
+* **Misc:** Node 16 is required
 <a name="0.2.42"></a>
 
 ## [0.2.42](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.41..v0.2.42) (2023-01-28 19:38:39)
