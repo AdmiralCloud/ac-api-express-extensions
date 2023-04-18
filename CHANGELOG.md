@@ -1,3 +1,13 @@
+<a name="1.0.2"></a>
+
+## [1.0.2](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.0.1..v1.0.2) (2023-04-18 18:46:19)
+
+
+### Bug Fix
+
+* **sanitizer:** Updated ac-sanitizer | MP | [7d8587b676f2e76d57d6c7204e9020cca761fe29](https://github.com/admiralcloud/ac-api-express-extensions/commit/7d8587b676f2e76d57d6c7204e9020cca761fe29)    
+Sanitizer 4.0.1 provides a fix for sanitizing arrays of objects  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 <a name="1.0.1"></a>
 
 ## [1.0.1](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.0.0..v1.0.1) (2023-04-18 15:39:17)
