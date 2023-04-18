@@ -1,3 +1,18 @@
+<a name="1.0.1"></a>
+
+## [1.0.1](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.0.0..v1.0.1) (2023-04-18 15:39:17)
+
+
+### Bug Fix
+
+* **sanitizer:** Honor adminLevel and omitFields when sanitizing | MP | [e1527fa9b33d9ab9eac1a07ee0e86695f7bd5ad7](https://github.com/admiralcloud/ac-api-express-extensions/commit/e1527fa9b33d9ab9eac1a07ee0e86695f7bd5ad7)    
+Use adminLevel on field level and omitFields setting  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+### Chores
+
+* **Misc:** Updated packages | MP | [1ed00e5256e18a8c5f8ca706c2bc78d71ee783e2](https://github.com/admiralcloud/ac-api-express-extensions/commit/1ed00e5256e18a8c5f8ca706c2bc78d71ee783e2)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 <a name="1.0.0"></a>
  
 # [1.0.0](https://github.com/admiralcloud/ac-api-express-extensions/compare/v0.2.42..v1.0.0) (2023-03-30 16:08:37)
