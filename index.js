@@ -451,7 +451,9 @@ const acaee = () => {
 
     const fieldsToCheck = {
       params,
-      fields
+      fields,
+      omitFields: _.get(config, 'http.sanitizer.omitFields'),
+      adminLevel: _.get(res.locals, 'user.adminLevel') || _.get(req.user, 'adminLevel') || 0
     }
     const check = acsanitizer.checkAndSanitizeValues(fieldsToCheck)
     if (_.get(check, 'error')) return res.miscError(_.get(check, 'error'))
