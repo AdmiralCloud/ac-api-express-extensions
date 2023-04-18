@@ -98,10 +98,10 @@ ac-ip@^3.0.1:
     ip "^1.1.8"
     lodash "4.x"
 
-ac-sanitizer@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-4.0.0.tgz#4ccd30c358d41a4d03df48ef491fcd413ebb0275"
-  integrity sha512-pzcB82x8lyhCWU1Q2MUnF92W8iYeAkvnV4oPIVQgNnpaJ33tWBH7R5eih/NAeWx3CpEIIOM937nxiy5/uVgd5w==
+ac-sanitizer@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-4.0.1.tgz#3914eeab894514fbe4a606b635d0976e567bd9dc"
+  integrity sha512-oeSg1KCfX46chp4laX+cJ5d1I/ILngvdkppb+qiIQ7wTVnLOBh2TPyXMnClc/8AnFVRB0qnzvd5bdz0zdB0WEQ==
   dependencies:
     ac-countrylist "^1.0.7"
     ac-file-extensions "^2.0.5"

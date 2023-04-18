@@ -7,7 +7,7 @@
   "author": "Mark Poepping <mark.poepping@admiralcloud.com>",
   "license": "MIT",
   "dependencies": {
-    "ac-sanitizer": "^4.0.0",
+    "ac-sanitizer": "^4.0.1",
     "is-number": "^7.0.0"
   },
   "devDependencies": {
