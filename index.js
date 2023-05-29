@@ -453,6 +453,7 @@ const acaee = () => {
       params,
       fields,
       omitFields: _.get(config, 'http.sanitizer.omitFields'),
+      ignoreUnknownFields: _.get(route, 'ignoreUnknownFields'),
       adminLevel: _.get(res.locals, 'user.adminLevel') || _.get(req.user, 'adminLevel') || 0
     }
     const check = acsanitizer.checkAndSanitizeValues(fieldsToCheck)
