@@ -1,3 +1,13 @@
+<a name="1.0.3"></a>
+
+## [1.0.3](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.0.2..v1.0.3) (2023-05-29 07:25:29)
+
+
+### Bug Fix
+
+* **sanitizer:** Allow ignoreUnknownFields | MP | [1981a3b20787ec583b50ac7d294da513c0fbab73](https://github.com/admiralcloud/ac-api-express-extensions/commit/1981a3b20787ec583b50ac7d294da513c0fbab73)    
+Allow ignoreUnknownFields on per-route basis  
+Related issues: [browse/AC-4381#AC-4381](https://admiralcloud.atlassian.net/browse/AC-4381)
 <a name="1.0.2"></a>
 
 ## [1.0.2](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.0.1..v1.0.2) (2023-04-18 18:46:19)
