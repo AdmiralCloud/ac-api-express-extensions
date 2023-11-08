@@ -359,16 +359,26 @@ const acaee = () => {
   const mapFieldDefinition = (field, action, params) => {
     if (_.isArray(field.requiredFor)) {
       let r = _.find(field.requiredFor, { action })
-      if (r && r.condition) {
-        if (_.get(r, 'condition.op') === 'not') {
-          field.required = !_.get(params, _.get(r, 'condition.field'))
+      if (r?.condition) {
+        let conditions = []
+        if (_.isArray(r.condition)) conditions = r.condition
+        else conditions.push(r.condition)
+        let required = true
+        for (let i = 0; i < _.size(conditions); i++) {
+          const condition = conditions[i]
+          if (_.get(condition, 'op') === 'not') {
+            required = required && !_.get(params, _.get(condition, 'field'))
+          }
+          else if (_.get(condition, 'value')) {
+            required = required && _.get(params, _.get(condition, 'field')) === _.get(condition, 'value')
+          }
+          else {
+            required = required && _.get(condition, 'field')
+          }
+          if (!required) break
         }
-        else if (_.get(r, 'condition.value')) {
-          field.required = _.get(params, _.get(r, 'condition.field')) === _.get(r, 'condition.value')
-        }
-        else {
-          field.required = _.get(r, 'condition.field')
-        }
+
+        field.required = required
       }
       else if (r) {
         field.required = true
