@@ -1,3 +1,17 @@
+<a name="1.1.0"></a>
+ 
+# [1.1.0](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.0.6..v1.1.0) (2023-11-09 09:27:30)
+
+
+### Feature
+
+* **sanitizer:** multi-condition support for field requirement | VD | [7f97332a229ca8a4d3d110c96e9d626b062bdfe0](https://github.com/admiralcloud/ac-api-express-extensions/commit/7f97332a229ca8a4d3d110c96e9d626b062bdfe0)    
+multi-condition support for field requirement  
+Related issues: [browse/AC-5058#AC-5058](https://admiralcloud.atlassian.net/browse/AC-5058)
+### Chores
+
+* **Misc:** Updated packages | VD | [0e09ce0e4fd9feaab89efb2997dc1e051346b60c](https://github.com/admiralcloud/ac-api-express-extensions/commit/0e09ce0e4fd9feaab89efb2997dc1e051346b60c)    
+Updated packages
 <a name="1.0.6"></a>
 
 ## [1.0.6](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.0.5..v1.0.6) (2023-09-29 09:29:09)
