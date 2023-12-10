@@ -7,13 +7,13 @@
   "author": "Mark Poepping <mark.poepping@admiralcloud.com>",
   "license": "MIT",
   "dependencies": {
-    "ac-sanitizer": "^4.0.4",
+    "ac-sanitizer": "^4.0.5",
     "is-number": "^7.0.0"
   },
   "devDependencies": {
     "ac-semantic-release": "^0.4.2",
     "chai": "^4.3.10",
-    "eslint": "^8.53.0",
+    "eslint": "^8.55.0",
     "mocha": "^10.2.0"
   },
   "scripts": {
