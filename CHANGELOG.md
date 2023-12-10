@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+
+## [1.1.1](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.0..v1.1.1) (2023-12-10 14:39:13)
+
+
+### Bug Fix
+
+* **Misc:** Package update | MP | [d2524ace19b69ec296b2bfc81b8b3e22b0cf8807](https://github.com/admiralcloud/ac-api-express-extensions/commit/d2524ace19b69ec296b2bfc81b8b3e22b0cf8807)    
+ac-sanitizer 4.0.5  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 <a name="1.1.0"></a>
  
 # [1.1.0](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.0.6..v1.1.0) (2023-11-09 09:27:30)
