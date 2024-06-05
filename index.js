@@ -325,7 +325,7 @@ const acaee = () => {
           obj = JSON.parse(obj)
         }
         catch(e) {
-          console.log('%s | Middleware | Parsing body failed %j', e)
+          console.error('%s | Middleware | Parsing body failed %j', e)
         }
       }
 
