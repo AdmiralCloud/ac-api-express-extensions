@@ -84,10 +84,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-ac-countrylist@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/ac-countrylist/-/ac-countrylist-1.0.11.tgz#8e00af23ea0ac357a74d7d88442ca253d54bf763"
-  integrity sha512-om+ChCrcAtN27I48lF+F6lzv1wdMR02JCHPEVtXgcQTCPADvCjgHDVczvJbxlXn/+ejKc3NPdXsEa7b2XJANHg==
+ac-countrylist@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/ac-countrylist/-/ac-countrylist-1.0.12.tgz#48fc3ffd345f22a0725741562b815e3b7e915d79"
+  integrity sha512-zCPoW+Iet2I99hPL9mk7XEDQZ8T14BBxz/MMF2q6wSpiCYBLuwBhABMt7u3Yw+ixlWrwTJbNvxdiETmCkmKvOw==
   dependencies:
     lodash "^4.17.21"
 
@@ -107,12 +107,12 @@ ac-ip@^3.1.1:
     ip "^2.0.1"
     lodash "4.x"
 
-ac-sanitizer@^4.0.11:
-  version "4.0.11"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-4.0.11.tgz#c52096aa89b32f90bd5230a368e4b73279d2aedf"
-  integrity sha512-25jtSgFjVk1ngP0QUKNWqt8BdGJ2k4+PiD8oFNFQE24QQwufJF8B4SoQxi4Eu9sRwzPgqbbCDVpl9EIaY4ebCg==
+ac-sanitizer@^4.0.12:
+  version "4.0.12"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-4.0.12.tgz#2a1497fe4821c89442972412d3b9f38479c32505"
+  integrity sha512-LLAz41+jnG/rJMkLhd1YAEB20EVAjwZs6lXEalsVtMoux90foFr/9tNHoyaw2ZZppqeVsT9859iNSQplw1ms3A==
   dependencies:
-    ac-countrylist "^1.0.11"
+    ac-countrylist "^1.0.12"
     ac-file-extensions "^2.0.9"
     ac-ip "^3.1.1"
     chai "^4.4.1"
