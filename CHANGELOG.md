@@ -1,3 +1,13 @@
+<a name="1.1.8"></a>
+
+## [1.1.8](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.7..v1.1.8) (2024-07-06 19:13:23)
+
+
+### Bug Fix
+
+* **Misc:** Package updates | MP | [f037d4f919c26cfe285e86760e929935252bc45b](https://github.com/admiralcloud/ac-api-express-extensions/commit/f037d4f919c26cfe285e86760e929935252bc45b)    
+Package updates  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 <a name="1.1.7"></a>
 
 ## [1.1.7](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.6..v1.1.7) (2024-07-06 18:55:33)
