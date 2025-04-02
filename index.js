@@ -443,20 +443,8 @@ const acaee = () => {
     const checkPayload = _.get(params, 'checkPayload')
 
     let fields = _.cloneDeep(_.get(def, 'fields'))
-    // filter by actions
-    fields = _.filter(fields, field => {
-      if (!_.get(field, 'actions')) return field
-      if (_.indexOf(_.get(field, 'actions'), action) > -1) return field
-    })
-    // filter httpMethods
-    fields = _.filter(fields, field => {
-      if (!_.get(field, 'httpMethods')) return field
-      if (_.indexOf(_.get(field, 'httpMethods'), 'request') > -1) return field
-    })
-    // map required
-    fields = _.map(fields, field => {
-      return mapFieldDefinition(field, action, params)
-    })
+    // Process fields and their nested properties
+    fields = processFields(fields, action, params)
     if (!_.size(fields)) return next()
 
     const fieldsToCheck = {
@@ -476,6 +464,38 @@ const acaee = () => {
     
     req.allParams = () => { return params }
     return next()
+  }
+
+  // Function to process fields recursively
+  const processFields = (fields, action, params) => {
+    if (!fields || !_.isArray(fields)) return []
+    
+    // Filter by actions
+    let processedFields = _.filter(fields, field => {
+      if (!_.get(field, 'actions')) return true
+      return _.get(field, 'actions').includes(action)
+    })
+    
+    // Filter httpMethods
+    processedFields = _.filter(processedFields, field => {
+      if (!_.get(field, 'httpMethods')) return true
+      return _.get(field, 'httpMethods').includes('request')
+    })
+    
+    // Map required and process nested properties
+    processedFields = _.map(processedFields, field => {
+      // Apply the required mapping
+      field = mapFieldDefinition(field, action, params)
+      
+      // Process nested properties if they exist
+      if (_.has(field, 'properties') && _.isArray(field.properties)) {
+        field.properties = processFields(field.properties, action, params)
+      }
+      
+      return field
+    })
+    
+    return processedFields
   }
 
     /**
