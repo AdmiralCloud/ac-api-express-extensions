@@ -1,4 +1,18 @@
 
+## [1.1.12](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.11..v1.1.12) (2025-04-02 08:47:39)
+
+
+### Bug Fix
+
+* **sanitizer:** Honor requirement in nested properties | MP | [7adb77bea86461df4fe274182fd448d9b37077b7](https://github.com/admiralcloud/ac-api-express-extensions/commit/7adb77bea86461df4fe274182fd448d9b37077b7)    
+Honor method, actions, requirement in nested properties  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+### Chores
+
+* **Misc:** Updated packages | MP | [42fe475ead515c2dfd931e2993f47c7a9274ee77](https://github.com/admiralcloud/ac-api-express-extensions/commit/42fe475ead515c2dfd931e2993f47c7a9274ee77)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.11](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.10..v1.1.11) (2025-01-25 13:18:38)
 
 
