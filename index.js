@@ -80,7 +80,7 @@ const acaee = () => {
   const prepareDocumentation = (params) => {
     const controller = _.get(params, 'controller')
     const action = _.toLower(_.get(params, 'action'))
-    const { method, path, deprecated, beta, experimental } = _.get(params, 'route')
+    const { method, path, iamPermissions, deprecated, beta, experimental } = _.get(params, 'route')
     const apiDoc = _.get(params, 'apiDoc')
     const name = _.get(params, 'route.name', action)
     const responseName = _.get(params, 'responseName')
@@ -228,6 +228,7 @@ const acaee = () => {
       deprecated,
       beta,
       experimental,
+      iamPermissions,
       headers,
       request: {
         fields: prepareFields(requestFields, 'request')
