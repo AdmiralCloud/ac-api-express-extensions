@@ -1,4 +1,13 @@
 
+## [1.1.15](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.14..v1.1.15) (2025-05-07 12:50:18)
+
+
+### Bug Fix
+
+* **apidocRoute:** Add iamPermissions to APIdoc | MP | [6e085f8744c5a12c5335131e248d5884d0b30d7c](https://github.com/admiralcloud/ac-api-express-extensions/commit/6e085f8744c5a12c5335131e248d5884d0b30d7c)    
+APIdoc now contains property iamPermissions per route  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.14](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.13..v1.1.14) (2025-05-06 18:09:07)
 
 
