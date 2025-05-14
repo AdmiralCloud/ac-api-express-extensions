@@ -144,10 +144,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
-ac-countrylist@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/ac-countrylist/-/ac-countrylist-1.0.12.tgz#48fc3ffd345f22a0725741562b815e3b7e915d79"
-  integrity sha512-zCPoW+Iet2I99hPL9mk7XEDQZ8T14BBxz/MMF2q6wSpiCYBLuwBhABMt7u3Yw+ixlWrwTJbNvxdiETmCkmKvOw==
+ac-countrylist@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/ac-countrylist/-/ac-countrylist-1.0.13.tgz#1bd1726f2ab760716f77cb07fac4600a941757b9"
+  integrity sha512-iaa9uUm7UksAjcFCuY5G0h7SqgLZOAGLxmvdCO7wpQT+hUW147RaRVgVP9WMCBTXBOxsGdDse20h3Yr/Rcr8IQ==
   dependencies:
     lodash "^4.17.21"
 
@@ -173,12 +173,12 @@ ac-ip@^4.1.3:
     ip-address "^10.0.1"
     lodash "4.x"
 
-ac-sanitizer@^4.1.4:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-4.1.4.tgz#45c789f25b4b4595d2130434b32286dd21fc3ec5"
-  integrity sha512-NVOKrw39oJlAp5Soy4b1VhxlQgAXJoarBG/I6V5GbLoqXVwcQXPwfk8apNO5Y9dbtYV6VQf+zO4vDrNfzRT8FQ==
+ac-sanitizer@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-4.2.0.tgz#5f1efb05cdb7535cc4918fa4f0db57cc4c9d3801"
+  integrity sha512-OkfAVYNLKzaLJ0FIF/CEPgJgSs3KBIRxfUPTA/JFhFY3dWcxXztE3QLlH8PXnGLzgGiFQHb7zuL9sWUNrYkGpw==
   dependencies:
-    ac-countrylist "^1.0.12"
+    ac-countrylist "^1.0.13"
     ac-file-extensions "^2.0.10"
     ac-ip "^4.1.3"
     chai "^4.5.0"
