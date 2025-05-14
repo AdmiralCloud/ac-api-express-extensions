@@ -123,8 +123,8 @@ const acaee = () => {
 
     const prepareFields = (fields, httpMethod) => {
       const fieldParameters = {
-        request: ['field', 'type', 'required', 'description', 'location', 'properties', 'defaultsTo', 'enum', 'nullAllowed', 'deprecated', 'beta', 'experimental'],
-        response: ['field', 'type', 'description', 'properties', 'defaultsTo', 'enum', 'nullAllowed',  'deprecated', 'beta', 'experimental']
+        request: ['field', 'type', 'required', 'description', 'location', 'properties', 'defaultsTo', 'enum', 'range','nullAllowed', 'deprecated', 'beta', 'experimental', 'retired'],
+        response: ['field', 'type', 'description', 'properties', 'defaultsTo', 'enum', 'range', 'nullAllowed', 'deprecated', 'beta', 'experimental', 'retired']
       }
       return _.map(fields, f => { 
         // fields that can be an array (value differs for different actions) or strings
