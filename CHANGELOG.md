@@ -1,4 +1,13 @@
 
+## [1.1.17](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.16..v1.1.17) (2025-05-14 19:58:32)
+
+
+### Bug Fix
+
+* **apidocRoute:** Additonal parameters for APIdoc | MP | [89c76fb86c5868dcdf2aac9f996c488e4c53d956](https://github.com/admiralcloud/ac-api-express-extensions/commit/89c76fb86c5868dcdf2aac9f996c488e4c53d956)    
+Additonal parameters for APIdoc  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.16](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.15..v1.1.16) (2025-05-14 19:40:38)
 
 
