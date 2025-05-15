@@ -126,83 +126,95 @@ const acaee = () => {
         request: ['field', 'type', 'required', 'description', 'location', 'properties', 'defaultsTo', 'enum', 'range','nullAllowed', 'deprecated', 'beta', 'experimental', 'retired'],
         response: ['field', 'type', 'description', 'properties', 'defaultsTo', 'enum', 'range', 'nullAllowed', 'deprecated', 'beta', 'experimental', 'retired']
       }
-      return _.map(fields, f => { 
-        // fields that can be an array (value differs for different actions) or strings
-        _.forEach(objFields, objField => {
-          // only convert if array
-          let apiDocField = _.get(f, objField.docField)
-          if (_.isArray(apiDocField)) {
-            let item = _.find(apiDocField, { action })
-            _.set(f, objField.property, _.get(item, 'value'))
-          }
-        })
-        
-        let required = _.find(f.requiredFor, { action })
-        if (required) {
-          if (_.get(required, 'condition')) {
-            f.required = _.get(required, 'condition')
-          }
-          else {
-            f.required = true
-          }
-        }
-        else {
-          f.required = false
-        }
-
-        let nullAllowed = _.find(f.nullAllowedFor, { action }) || _.find(f.nullAllowedFor, { action: httpMethod })
-        if (nullAllowed) f.nullAllowed = true
-
-        if (_.isArray(f.description)) {
-          f.description = _.get((_.find(f.description, { action: httpMethod }) || _.find(f.description, { action })), 'message')
-        }
-        f.location = _.get(f, 'location', 'body')
-
-        if (f.schema) {
-          let schemaDef = []
-          _.forOwn(f.schema, (obj, key) => {
-            let required = _.get(obj, 'required') || _.find(f.requiredFor, { action })
-            if (required) {
-              if (_.get(required, 'condition')) {
-                required = _.get(required, 'condition')
-              }
-              else {
-                required = true
-              }
+      
+      const processFields = (fieldsToProcess) => {
+        return _.map(fieldsToProcess, f => {
+          // fields that can be an array (value differs for different actions) or strings, list see above
+          _.forEach(objFields, objField => {
+            // only convert if array
+            let apiDocField = _.get(f, objField.docField)
+            if (_.isArray(apiDocField)) {
+              let item = _.find(apiDocField, { action })
+              _.set(f, objField.property, _.get(item, 'value'))
+            }
+          })
+          
+          let required = _.find(f.requiredFor, { action })
+          if (required) {
+            if (_.get(required, 'condition')) {
+              f.required = _.get(required, 'condition')
             }
             else {
-              required = false
+              f.required = true
             }
-
-            let def = {
-              field: key,
-              type: !_.get(obj, 'flat') ? 'object' : _.get(obj, 'allowedKeys[0].type'),
-              required,
-              description: _.get(obj, 'description')
-            }
-            if (!_.get(obj, 'flat')) {
-              let properties = []
-              _.forEach(_.get(obj, 'allowedKeys'), keys => {
-                let def = {
-                  field: _.get(keys, 'key'),
-                  required,
-                  description: _.get(keys, 'description'),
-                  type: _.get(keys, 'type'),
-                  isMemberOf: _.get(keys, 'isMemberOf')
+          }
+          else {
+            f.required = false
+          }
+          
+          let nullAllowed = _.find(f.nullAllowedFor, { action }) || _.find(f.nullAllowedFor, { action: httpMethod })
+          if (nullAllowed) f.nullAllowed = true
+          
+          if (_.isArray(f.description)) {
+            f.description = _.get((_.find(f.description, { action: httpMethod }) || _.find(f.description, { action })), 'message')
+          }
+          
+          f.location = _.get(f, 'location', 'body')
+          
+          // DEPRECATED: Use a schema is deprecated, use properties array!
+          if (f.schema) {
+            let schemaDef = []
+            _.forOwn(f.schema, (obj, key) => {
+              let required = _.get(obj, 'required') || _.find(f.requiredFor, { action })
+              if (required) {
+                if (_.get(required, 'condition')) {
+                  required = _.get(required, 'condition')
                 }
-                properties.push(def)
-
-              })
-              _.set(def, 'type', 'object')
-              _.set(def, 'properties', properties)
-            }
-            schemaDef.push(def)
-          })
-          _.set(f, 'properties', schemaDef)
-        }
-
-        return _.pick(f, _.get(fieldParameters, httpMethod)) 
-      })
+                else {
+                  required = true
+                }
+              }
+              else {
+                required = false
+              }
+              
+              let def = {
+                field: key,
+                type: !_.get(obj, 'flat') ? 'object' : _.get(obj, 'allowedKeys[0].type'),
+                required,
+                description: _.get(obj, 'description')
+              }
+              
+              if (!_.get(obj, 'flat')) {
+                let properties = []
+                _.forEach(_.get(obj, 'allowedKeys'), keys => {
+                  let def = {
+                    field: _.get(keys, 'key'),
+                    required,
+                    description: _.get(keys, 'description'),
+                    type: _.get(keys, 'type'),
+                    isMemberOf: _.get(keys, 'isMemberOf')
+                  }
+                  properties.push(def)
+                })
+                _.set(def, 'type', 'object')
+                _.set(def, 'properties', properties)
+              }
+              
+              schemaDef.push(def)
+            })
+            _.set(f, 'properties', schemaDef)
+          }
+          
+          if (_.size(f.properties) > 0) {
+            f.properties = processFields(f.properties)
+          }
+          
+          return _.pick(f, _.get(fieldParameters, httpMethod))
+        })
+      }
+      
+      return processFields(fields)
     }
 
     const defExamples = _.cloneDeep(_.get(def, 'examples'))
