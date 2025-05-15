@@ -1,4 +1,13 @@
 
+## [1.1.18](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.17..v1.1.18) (2025-05-15 05:45:50)
+
+
+### Bug Fix
+
+* **apidocRoute:** Prepare nested properties | MP | [cc87307442769cfe768d149e73b9982b63f1f126](https://github.com/admiralcloud/ac-api-express-extensions/commit/cc87307442769cfe768d149e73b9982b63f1f126)    
+Make sure nested properties are also prepared for required, etc  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.17](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.16..v1.1.17) (2025-05-14 19:58:32)
 
 
