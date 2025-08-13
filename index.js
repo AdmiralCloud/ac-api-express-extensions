@@ -101,16 +101,33 @@ const acaee = () => {
     // filter by actions (default response, alternative response.ACTION)
     let responseFields = _.cloneDeep(_.get(def, 'fields'))
     let responseAction = 'response'
-    if (responseName) responseAction += '.' + responseName
-    _.some(responseFields, field => {
-      if (indexOfCI(_.get(field, 'actions'), 'response.' + action)) {
-        responseAction = 'response.' + action
-        return true
+    let filteredFields = []
+
+    if (responseName) {
+      // Priority 1: Filter by responseName if it exists
+      responseAction = 'response.' + responseName
+      filteredFields = _.filter(responseFields, field => {
+        return indexOfCI(_.get(field, 'actions'), responseAction)
+      })
+    }
+    else {
+      // Priority 2: Try filtering by response.action
+      responseAction = 'response.' + action
+      filteredFields = _.filter(responseFields, field => {
+        return indexOfCI(_.get(field, 'actions'), responseAction)
+      })
+      
+      // Priority 3: If no results with response.action, fall back to 'response'
+      if (filteredFields.length === 0) {
+        responseAction = 'response'
+        filteredFields = _.filter(responseFields, field => {
+          return indexOfCI(_.get(field, 'actions'), responseAction)
+        })
       }
-    })
-    responseFields = _.orderBy(_.filter(responseFields, field => {
-      if (indexOfCI(_.get(field, 'actions'), responseAction)) return field
-    }), 'field')
+    }
+
+    // Order the filtered results by field
+    responseFields = _.orderBy(filteredFields, 'field')
 
     // filter out fields which are marked as noDocumentation = true
     requestFields = _.filter(requestFields, field => {
