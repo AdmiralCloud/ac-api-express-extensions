@@ -1,4 +1,18 @@
 
+## [1.1.20](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.19..v1.1.20) (2025-08-13 08:48:31)
+
+
+### Bug Fix
+
+* **apidocRoute:** Improved APIdoc for response | MP | [429b8823db07d2a9e15c8d1400d81d2d8921fc94](https://github.com/admiralcloud/ac-api-express-extensions/commit/429b8823db07d2a9e15c8d1400d81d2d8921fc94)    
+Response json for APIdoc now checks for a set name, then the action and then falls back to default response  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+### Chores
+
+* **Misc:** Updated packages | MP | [76a705073a3b63fd9b32b2181115890a158e1d18](https://github.com/admiralcloud/ac-api-express-extensions/commit/76a705073a3b63fd9b32b2181115890a158e1d18)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.19](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.18..v1.1.19) (2025-05-19 06:12:59)
 
 
