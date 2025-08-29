@@ -179,7 +179,7 @@ const acaee = () => {
           f.location = _.get(f, 'location', 'body')
           
           // DEPRECATED: Use a schema is deprecated, use properties array!
-          if (f.schema) {
+          if (f.schema && !_.isFunction(_.get(f, 'schema.verify'))) {
             let schemaDef = []
             _.forOwn(f.schema, (obj, key) => {
               let required = _.get(obj, 'required') || _.find(f.requiredFor, { action })
