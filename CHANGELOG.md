@@ -1,4 +1,13 @@
 
+## [1.1.21](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.20..v1.1.21) (2025-08-29 07:45:57)
+
+
+### Bug Fix
+
+* **apidocRoute:** Do not show verify function as property | MP | [da7791d13d1eac5d827cd8cff01fed46ec90a177](https://github.com/admiralcloud/ac-api-express-extensions/commit/da7791d13d1eac5d827cd8cff01fed46ec90a177)    
+You can use verify function for schema to run functions in sanitizer (e.g. for mimetype checks). Make sure this function is not displayed as property in APIdoc  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.20](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.19..v1.1.20) (2025-08-13 08:48:31)
 
 
