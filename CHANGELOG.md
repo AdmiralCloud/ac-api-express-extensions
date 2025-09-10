@@ -1,4 +1,18 @@
 
+## [1.1.23](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.22..v1.1.23) (2025-09-10 13:17:10)
+
+
+### Bug Fix
+
+* **sanitizer:** Allow condition check with include | MP | [ab3628d86af7d3982b5ac3237ba9b541898ea02d](https://github.com/admiralcloud/ac-api-express-extensions/commit/ab3628d86af7d3982b5ac3237ba9b541898ea02d)    
+Condition can have op=include and check that the parameter value is included in the given value  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+### Chores
+
+* **Misc:** Updated packages | MP | [e5f1e8936b7c7a3413c9a945cdf63d32fed2a2ab](https://github.com/admiralcloud/ac-api-express-extensions/commit/e5f1e8936b7c7a3413c9a945cdf63d32fed2a2ab)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.22](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.21..v1.1.22) (2025-08-31 12:36:49)
 
 
