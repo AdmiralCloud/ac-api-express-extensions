@@ -400,7 +400,12 @@ const acaee = () => {
             required = required && !_.get(params, _.get(condition, 'field'))
           }
           else if (_.get(condition, 'value')) {
-            required = required && _.get(params, _.get(condition, 'field')) === _.get(condition, 'value')
+            if (_.get(condition, 'op') === 'include') {
+              required = required && _.get(condition, 'value').includes(_.get(params, _.get(condition, 'field')))
+            }
+            else {
+              required = required && _.get(params, _.get(condition, 'field')) === _.get(condition, 'value')
+            }
           }
           else {
             required = required && _.get(condition, 'field')
