@@ -519,6 +519,9 @@ const acaee = () => {
     
     // Map required and process nested properties
     processedFields = _.map(processedFields, field => {
+      // property optional is only valid for response fields 
+      if (!_.includes(action, 'response') && field.optional) _.unset(field, 'optional')
+
       // Apply the required mapping
       field = mapFieldDefinition(field, action, params)
       
