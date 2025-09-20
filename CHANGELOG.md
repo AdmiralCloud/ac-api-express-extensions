@@ -1,4 +1,13 @@
 
+## [1.1.26](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.25..v1.1.26) (2025-09-20 14:11:11)
+
+
+### Bug Fix
+
+* **sanitizer:** Allow property optional for response payload definition | MP | [a35fc797ecec733b97c96617f9d43274dfdadecc](https://github.com/admiralcloud/ac-api-express-extensions/commit/a35fc797ecec733b97c96617f9d43274dfdadecc)    
+Allow property optional for response payload definition  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.25](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.24..v1.1.25) (2025-09-20 14:08:07)
 
 
