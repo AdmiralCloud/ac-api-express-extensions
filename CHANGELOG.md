@@ -1,4 +1,13 @@
 
+## [1.1.27](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.26..v1.1.27) (2025-09-20 18:07:31)
+
+
+### Bug Fix
+
+* **sanitizer:** optional field property must only be uesd in response | MP | [7eb98c83af9b95266907b7c2cd6c053b735b2fb2](https://github.com/admiralcloud/ac-api-express-extensions/commit/7eb98c83af9b95266907b7c2cd6c053b735b2fb2)    
+optional field property must only be uesd in response  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.26](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.25..v1.1.26) (2025-09-20 14:11:11)
 
 
