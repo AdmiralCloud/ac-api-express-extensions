@@ -465,39 +465,62 @@ const acaee = () => {
   }
 
   const sanitizer = (config, route, req, res, next) => {
-    if (!_.get(config, 'apiDoc')) return next()
-    if (_.has(route, 'sanitizer')) return next() // route based sanitizer is activated
+    if (!config.apiDoc) return next()
+    if (route.sanitizer) return next() // route based sanitizer is activated
 
-    const controller = _.get(req, 'options.controller') || _.get(route, 'controller')
-    const action = _.get(req, 'options.action') || _.get(route, 'action')
-
-    const def = _.get(config.apiDoc, controller)
+    const controller = req.options?.controller || route.controller
+    const action = req.options?.action || route.action
+    const def = config.apiDoc[controller]
     if (_.isEmpty(def)) return next()
 
     let params = req.allParams()
-    const checkPayload = _.get(params, 'checkPayload')
-
-    let fields = _.cloneDeep(_.get(def, 'fields'))
-    // Process fields and their nested properties
-    fields = processFields(fields, action, params)
+    const checkPayload = params.checkPayload
+    
+    // Cache admin level
+    const adminLevel = res.locals?.user?.adminLevel || req.user?.adminLevel || 0
+    
+    // Process main fields
+    let fields = processFields(_.cloneDeep(def.fields), action, params)
     if (!_.size(fields)) return next()
 
-    const fieldsToCheck = {
-      params,
-      fields,
-      omitFields: _.get(config, 'http.sanitizer.omitFields'),
-      ignoreUnknownFields: _.get(route, 'ignoreUnknownFields'),
-      adminLevel: _.get(res.locals, 'user.adminLevel') || _.get(req.user, 'adminLevel') || 0
+    // Helper function to avoid code duplication
+    const sanitizeFields = (fieldsToProcess) => {
+      const fieldsToCheck = {
+        params,
+        fields: fieldsToProcess,
+        omitFields: config.http?.sanitizer?.omitFields,
+        ignoreUnknownFields: route.ignoreUnknownFields,
+        adminLevel
+      }
+      return acsanitizer.checkAndSanitizeValues(fieldsToCheck)
     }
-    const check = acsanitizer.checkAndSanitizeValues(fieldsToCheck)
-    if (_.get(check, 'error')) return res.miscError(_.get(check, 'error'))
-    else params = _.get(check, 'params')
 
-    if (_.get(config, 'environment') === 'test' && checkPayload) {
-      return res.json(params)  
-    }
+    // Main sanitization
+    const check = sanitizeFields(fields)
+    if (check.error) return res.miscError(check.error)
     
-    req.allParams = () => { return params }
+    params = check.params
+
+    // Test environment response checking
+    if (config.environment === 'test' && checkPayload) {
+      // Try specific action first, then fallback to general response
+      let responseFields = processFields(_.cloneDeep(def.fields), `response.${action}`, params)
+      
+      if (!_.size(responseFields)) {
+        responseFields = processFields(_.cloneDeep(def.fields), 'response', params)
+      }
+
+      if (_.size(responseFields)) {
+        const responseCheck = sanitizeFields(responseFields)
+        if (responseCheck.error) return res.miscError(responseCheck.error)
+        
+        params = responseCheck.params
+      }
+      
+      return res.json(params)
+    }
+
+    req.allParams = () => params
     return next()
   }
 
