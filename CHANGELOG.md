@@ -1,4 +1,13 @@
 
+## [1.1.28](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.27..v1.1.28) (2025-09-21 13:47:04)
+
+
+### Bug Fix
+
+* **sanitizer:** Make sure checkPayload checks response payload | MP | [c4af6785f1c06a3e017258e765390232af891ca9](https://github.com/admiralcloud/ac-api-express-extensions/commit/c4af6785f1c06a3e017258e765390232af891ca9)    
+If checkPayload is active, make sure to check response against APIdoc response definition  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.27](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.26..v1.1.27) (2025-09-20 18:07:31)
 
 
