@@ -517,6 +517,7 @@ const acaee = () => {
         params = responseCheck.params
       }
       
+      res.emit('releaseLock')
       return res.json(params)
     }
 
