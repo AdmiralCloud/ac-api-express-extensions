@@ -1,4 +1,16 @@
 
+## [1.1.30](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.29..v1.1.30) (2025-11-26 15:30:26)
+
+
+### Bug Fix
+
+* **Misc:** Package updates | MP | [669543e43c6ed4a7869d197a700e111c878ff440](https://github.com/admiralcloud/ac-api-express-extensions/commit/669543e43c6ed4a7869d197a700e111c878ff440)    
+Package updates  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+* **Misc:** In testmode send release Lock | MP | [37bb1df3aa24f1c90e4a195fa3c404ae63ee28ac](https://github.com/admiralcloud/ac-api-express-extensions/commit/37bb1df3aa24f1c90e4a195fa3c404ae63ee28ac)    
+Send res.emit for releaseLock  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+
 ## [1.1.29](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.28..v1.1.29) (2025-10-27 19:11:59)
 
 
