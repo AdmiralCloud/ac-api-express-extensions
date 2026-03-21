@@ -3,7 +3,10 @@
   "version": "1.1.33",
   "description": "AdmiralCloud ExpressJS extensions for your API",
   "main": "index.js",
-  "repository": "admiralcloud/ac-api-express-extensions",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/admiralcloud/ac-api-express-extensions.git"
+  },
   "author": "Mark Poepping <mark.poepping@admiralcloud.com>",
   "license": "MIT",
   "dependencies": {
@@ -17,7 +20,7 @@
     "mocha": "^11.7.5"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha  --timeout 60000 --bail --exit --slow 1000 --colors ./test.js || :"
+    "test": "mocha  --timeout 60000 --bail --exit --slow 1000 --colors ./test.js || :"
   },
   "resolutions": {
     "mocha/chokidar/braces": "^3.0.3",
