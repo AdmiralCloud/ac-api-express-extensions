@@ -277,10 +277,10 @@ ac-custom-error@^2.0.2:
   resolved "https://registry.yarnpkg.com/ac-custom-error/-/ac-custom-error-2.0.2.tgz#4ade6f9afcca967dc3da0a12c38729e3ff872ab9"
   integrity sha512-J2sqS+Fc7vl1+i9yTFYJO6JRbEuktvAs2eEcgSE3RSkgwn+3E7yPDw5O8mPGJPkHNIF6AgSL2nBMQkZfwJ2jqQ==
 
-ac-file-extensions@^2.0.19:
-  version "2.0.19"
-  resolved "https://registry.yarnpkg.com/ac-file-extensions/-/ac-file-extensions-2.0.19.tgz#b886621d969c70e4027adbc00f7635f9efbf337f"
-  integrity sha512-DJgPyN9cz6LTA/erLNZrTqYLoJOSM89+4p7YXNXGBs+aFVysUElIzt7XhZA9N7GwhO/dQKDshZn3/Ga2ROGRww==
+ac-file-extensions@^2.0.21:
+  version "2.0.21"
+  resolved "https://registry.yarnpkg.com/ac-file-extensions/-/ac-file-extensions-2.0.21.tgz#d470a69149ee6372674eeb63b470631cb1e80848"
+  integrity sha512-73sT5Cv735hoYFvqvWf38Y0PYel2TNvQs1G2TV3qhtjdBRkCMIVyVp6vfAls8Liaa0rYwUG5J/2TytHqQq8/CQ==
   dependencies:
     ac-semantic-release "^0.4.10"
     lodash "^4.17.23"
@@ -294,24 +294,24 @@ ac-ip@^4.1.12:
     ip-address "^10.1.0"
     lodash "4.x"
 
-ac-sanitizer@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-6.0.2.tgz#a64f53df6b4e751d1ec3376b09db00b61ff8cbdb"
-  integrity sha512-UOHo7BOwE0K3smQu64J/VzK5LaZ3L7U5F6oTW56k0VorLtlclFhvmmwoJ3F0lnaKK+FS44qwEibN6QtbdmJpZw==
+ac-sanitizer@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-6.0.4.tgz#1d969389e5ae653e7db94033346bdf05c9c81366"
+  integrity sha512-4AUPGS6bWMg0CMK8u1r2f7BI+KoxjpwYmBdqfd0rtGwqKV9/EinQcNwVDZPfWTP8eFWv0arbPS5sNX/eoEMZhQ==
   dependencies:
     ac-countrylist "^1.0.16"
-    ac-file-extensions "^2.0.19"
+    ac-file-extensions "^2.0.21"
     ac-ip "^4.1.12"
     chai "^4.5.0"
-    date-and-time "^4.3.1"
+    date-and-time "^4.4.0"
     hashids "^2.3.0"
-    lodash "^4.17.23"
+    lodash "^4.17.21"
     validator "^13.15.26"
 
-ac-semantic-release@^0.4.10:
-  version "0.4.10"
-  resolved "https://registry.yarnpkg.com/ac-semantic-release/-/ac-semantic-release-0.4.10.tgz#f03de6dde748992090f083c9a9159a0bc29a4e7e"
-  integrity sha512-WyAsRp9Cz2ueE8/pCCtzWC9Ab2FeplhdERWa7MgHwwhx7PUfNnHo7dbPWJv4rn/KJWnspvPjgUhG9K+EQC6LMw==
+ac-semantic-release@^0.4.10, ac-semantic-release@^0.4.11:
+  version "0.4.11"
+  resolved "https://registry.yarnpkg.com/ac-semantic-release/-/ac-semantic-release-0.4.11.tgz#e392d1cd2ae08314b395281691ccff62bdbe8861"
+  integrity sha512-pFQmMpUJJ0f5m7jxAYDJ0dsWq+yFErAEm4Wz+/oeAtjynYTbhep9aKMOKLabks+ROpTMBDmuoW9nKzjs4cT48Q==
   dependencies:
     async "^3.2.6"
     chalk "5.6.2"
@@ -381,17 +381,17 @@ balanced-match@^1.0.0:
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
 brace-expansion@^1.1.7:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.12.tgz#ab9b454466e5a8cc3a187beaad580412a9c5b843"
-  integrity sha512-9T9UjW3r0UW5c1Q7GTwllptXwhvYmEzFhzMfZ9H7FQWt+uZePjZPjBP/W1ZEyZ1twGWom5/56TF4lPcqjnDHcg==
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.13.tgz#d37875c01dc9eff988dd49d112a57cb67b54efe6"
+  integrity sha512-9ZLprWS6EENmhEOpjCYW2c8VkmOvckIJZfkr7rBW6dObmfgJ/L1GpSYW5Hpo9lDz4D1+n0Ckz8rU7FwHDQiG/w==
   dependencies:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
 
 brace-expansion@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-2.0.2.tgz#54fc53237a613d854c7bd37463aad17df87214e7"
-  integrity sha512-Jt0vHyM+jmUBqojB7E1NIYadt0vI0Qxjxd2TErW94wDz+E2LAm5vKMXXwg6ZZBTHPuUlDgQHKXvjGBdfcF1ZDQ==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-2.0.3.tgz#0493338bdd58e319b1039c67cf7ee439892c01d9"
+  integrity sha512-MCV/fYJEbqx68aE58kv2cA/kiky1G8vux3OR6/jbS+jIMe/6fJWa0DTzJU7dqijOWYwHi1t29FlfYI9uytqlpA==
   dependencies:
     balanced-match "^1.0.0"
 
@@ -502,10 +502,10 @@ cross-spawn@^7.0.6:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-date-and-time@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/date-and-time/-/date-and-time-4.3.1.tgz#8f1cf29902b08e97b7120899ee55138bf8ab8f6e"
-  integrity sha512-3Phnc4P4KzoMWMvvFws8tJg7IBE8bHkGG8aVztd7QqreyeCnNbaFzslU0+/z0wlQ0TrWbDqyQMKSZdeLWLxgNw==
+date-and-time@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/date-and-time/-/date-and-time-4.4.0.tgz#9ce8ef38120f15884a3175b3930e61ced77aaac0"
+  integrity sha512-foXRmpxgnF6JApwYcYDXfXXA0V3A/5ITsCfUXBxhfNekZmv1few84MQxkgBK6lVr1vENcGHY4hzlJJwJJ5tnWA==
 
 debug@^4.3.1, debug@^4.3.2, debug@^4.3.5:
   version "4.4.3"
@@ -532,9 +532,9 @@ deep-is@^0.1.3:
   integrity sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==
 
 diff@^7.0.0, diff@^8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/diff/-/diff-8.0.3.tgz#c7da3d9e0e8c283bb548681f8d7174653720c2d5"
-  integrity sha512-qejHi7bcSD4hQAZE0tNAawRK1ZtafHDmMTMkrrIGgSLl7hTnQHmKCeB45xAcbfTqK2zowkM3j3bHt/4b/ARbYQ==
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-8.0.4.tgz#4f5baf3188b9b2431117b962eb20ba330fadf696"
+  integrity sha512-DPi0FmjiSU5EvQV0++GFDOJ9ASQUVFh5kD+OzOnYdi7n3Wpm9hWWGfB/O2blfHcMVTL5WkQXSnRiK9makhrcnw==
 
 eastasianwidth@^0.2.0:
   version "0.2.0"
@@ -907,7 +907,7 @@ lodash.merge@^4.6.2:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
-lodash@4.x, lodash@^4.17.23:
+lodash@4.x, lodash@^4.17.21, lodash@^4.17.23:
   version "4.17.23"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.23.tgz#f113b0378386103be4f6893388c73d0bde7f2c5a"
   integrity sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==
@@ -1102,9 +1102,9 @@ rxjs@^7.8.2:
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
 serialize-javascript@^6.0.2, serialize-javascript@^7.0.3:
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-7.0.4.tgz#c517735bd5b7631dd1fc191ee19cbb713ff8e05c"
-  integrity sha512-DuGdB+Po43Q5Jxwpzt1lhyFSYKryqoNjQSA9M92tyw0lyHIOur+XCalOUe0KTJpyqzT8+fQ5A0Jf7vCx/NKmIg==
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-7.0.5.tgz#c798cc0552ffbb08981914a42a8756e339d0d5b1"
+  integrity sha512-F4LcB0UqUl1zErq+1nYEEzSHJnIwb3AF2XWB94b+afhrekOUijwooAYqFyRbjYkm2PAKBabx6oYv/xDxNi8IBw==
 
 shebang-command@^2.0.0:
   version "2.0.0"
