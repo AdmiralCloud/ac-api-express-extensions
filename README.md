@@ -4,6 +4,8 @@ This packages adds 3 valuable helper function to your express app:
 + "sanitizer" which adds sanitizing to your route based on defined fields
 + "apidocRoute" which "automatically" creates your API documentation based on defined fields (the same as for sanitizing)
 
+[![Node.js CI](https://github.com/AdmiralCloud/ac-api-express-extensions/actions/workflows/node.js.yml/badge.svg)](https://github.com/AdmiralCloud/ac-api-express-extensions/actions/workflows/node.js.yml)
+
 ## General Usage
 ```
 yarn add ac-api-express-extensions

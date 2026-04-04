@@ -217,4 +217,52 @@ describe('APIdoc', () => {
       return done()
     })
   })
+
+  it('Check that route with apiDoc.enabled=false is excluded', done => {
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find', name: 'Find user', apiDoc: { enabled: false } }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(config, params)
+
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      expect(result).to.eql([])
+      return done()
+    })
+  })
+
+  it('Check that only routes without apiDoc.enabled=false are included', done => {
+    const configWithMultipleActions = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            { actions: ['find'], field: 'lastname', type: 'string', description: 'Lastname' },
+            { actions: ['create'], field: 'firstname', type: 'string', description: 'Firstname' }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find', 'create'],
+      routes: [
+        { method: 'get', path: '/v1/user', action: 'find', name: 'Find user' },
+        { method: 'post', path: '/v1/user', action: 'create', name: 'Create user', apiDoc: { enabled: false } }
+      ]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(configWithMultipleActions, params)
+
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      expect(result).to.have.length(1)
+      expect(result[0].name).to.eql('Find user')
+      return done()
+    })
+  })
 })
