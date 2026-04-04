@@ -1,3 +1,20 @@
+## [1.1.36](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.35..v1.1.36) (2026-04-04 11:14:18)
+
+
+### Bug Fix
+
+
+* **Misc:** Package updates | MP | [c79d7bd14fb0d1ae7a7167f54509336b7143ceb5](https://github.com/admiralcloud/ac-api-express-extensions/commit/c79d7bd14fb0d1ae7a7167f54509336b7143ceb5)    
+Package updates  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+* **apidocRoute:** Honor disabling APIdoc on route | MP | [50d28a0f10af543052770664c848508a645adb96](https://github.com/admiralcloud/ac-api-express-extensions/commit/50d28a0f10af543052770664c848508a645adb96)    
+Honor disabling APIdoc on route  
+Related issues: [browse/AC-8508#AC-8508](https://admiralcloud.atlassian.net/browse/AC-8508)
+### Chores
+
+
+* **Misc:** Add Github action to run tests | MP | [6f4a9c856c4b8b42796f9c148d19f27589de1bd8](https://github.com/admiralcloud/ac-api-express-extensions/commit/6f4a9c856c4b8b42796f9c148d19f27589de1bd8)    
+Add Github action to run tests
 
 ## [1.1.35](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.34..v1.1.35) (2026-04-01 15:45:57)
 
