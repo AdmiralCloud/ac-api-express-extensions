@@ -12,7 +12,7 @@ const acaee = () => {
   }
 
   // field properties that can be string or object (if differs for different actions)
-  const objFields = [{ docField: 'enumFor', property: 'enum' }]
+  const objFields = [{ docField: 'enumFor', property: 'enum' }, { docField: 'iamPermissionsFor', property: 'iamPermissions' }]
 
 
   // PUBLIC
