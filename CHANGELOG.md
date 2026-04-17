@@ -1,3 +1,21 @@
+## [1.1.38](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.37..v1.1.38) (2026-04-17 11:32:01)
+
+
+### Bug Fix
+
+
+* **apidocRoute:** Mnor adjustments to make sure we differentiate between actions | MP | [d7b909ee67bc1b97e3d15208f0e03b194201cb38](https://github.com/admiralcloud/ac-api-express-extensions/commit/d7b909ee67bc1b97e3d15208f0e03b194201cb38)    
+Request and response actions must be handled separately  
+Related issues: [browse/AC-8549#AC-8549](https://admiralcloud.atlassian.net/browse/AC-8549)
+* **apidocRoute:** Allow IAMpermission for fields for single action | MP | [de228996e5e19e0a4de459f34573d486507100dc](https://github.com/admiralcloud/ac-api-express-extensions/commit/de228996e5e19e0a4de459f34573d486507100dc)    
+It is possible to define IAM permissions for a field based on a single action in a multi-action definition  
+Related issues: [browse/AC-8549#AC-8549](https://admiralcloud.atlassian.net/browse/AC-8549)
+* **apidocRoute:** Minor fixes | MP | [d1f62719e375413be7095ecbfe0500b4f459c56c](https://github.com/admiralcloud/ac-api-express-extensions/commit/d1f62719e375413be7095ecbfe0500b4f459c56c)    
+Minor fixes  
+Related issues: [browse/AC-8549#AC-8549](https://admiralcloud.atlassian.net/browse/AC-8549)
+* **apidocRoute:** Add field-level IAM permissions to API documentation | MP | [1fcc68c1e89e68173cba4b307b2a5b0c358ba552](https://github.com/admiralcloud/ac-api-express-extensions/commit/1fcc68c1e89e68173cba4b307b2a5b0c358ba552)    
+Add field-level IAM permissions to API documentation  
+Related issues: [browse/AC-8549#AC-8549](https://admiralcloud.atlassian.net/browse/AC-8549)
 ## [1.1.37](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.36..v1.1.37) (2026-04-17 07:50:51)
 
 
