@@ -14,7 +14,7 @@
     "is-number": "^7.0.0"
   },
   "devDependencies": {
-    "ac-semantic-release": "^1.0.1",
+    "ac-semantic-release": "^1.0.2",
     "chai": "^4.5.0",
     "eslint": "^10.2.0",
     "mocha": "^11.7.5"

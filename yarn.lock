@@ -303,10 +303,10 @@ ac-semantic-release@^0.4.10:
     inquirer "^12.11.1"
     lodash "^4.17.23"
 
-ac-semantic-release@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/ac-semantic-release/-/ac-semantic-release-1.0.1.tgz#8dce69b703334fb8acf522b2e0ab1a65969fd610"
-  integrity sha512-Gy2sPbPX8kU4o+RE0wCFOmYttIqpvNhHqzC74HcE4YAHy3g89MtTkW5JMVF2W/9GVKjFkZDOvYyLEiWK9X3BYw==
+ac-semantic-release@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ac-semantic-release/-/ac-semantic-release-1.0.2.tgz#8d3e6663474ff02b9093201a93ad3247d4cf58c4"
+  integrity sha512-vqKFi8gfMOwmLj6oJYWm1fIV/YGQ2I92w9UTWFte1MR0aLz6w7K+rJemR+nax3CFo36l1D6pV40zl3GPkH1H1w==
   dependencies:
     inquirer "^12.11.1"
     lodash.merge "^4.6.2"
