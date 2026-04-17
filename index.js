@@ -151,7 +151,16 @@ const acaee = () => {
             // only convert if array
             let apiDocField = _.get(f, objField.docField)
             if (_.isArray(apiDocField)) {
-              let item = _.find(apiDocField, { action })
+              // For response context: try 'response.{action}', then 'response', then raw action
+              // For request context: try raw action only
+              let item
+              if (httpMethod !== 'request') {
+                item = _.find(apiDocField, { action: httpMethod + '.' + action })
+                    || _.find(apiDocField, { action: httpMethod })
+              }
+              else {
+                item = _.find(apiDocField, { action })
+              }
               _.set(f, objField.property, _.get(item, 'value'))
             }
           })

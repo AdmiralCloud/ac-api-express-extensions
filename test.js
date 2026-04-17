@@ -371,6 +371,47 @@ describe('APIdoc', () => {
     })
   })
 
+  it('Check that iamPermissionsFor with action "find" does NOT apply to response fields', done => {
+    const iamConfig = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            {
+              actions: ['find'],
+              field: '-',
+              description: 'No request parameters'
+            },
+            {
+              actions: ['response.find'],
+              field: 'settings',
+              type: 'object',
+              description: 'Settings',
+              iamPermissionsFor: [
+                { action: 'find', value: ['user.settings'] }
+              ]
+            }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find' }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(iamConfig, params)
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      const doc = _.first(result)
+      const responseField = _.find(doc.response.fields, { field: 'settings' })
+      expect(responseField.iamPermissions).to.be.undefined
+      return done()
+    })
+  })
+
   it('Check that iamPermissionsFor is action-specific and only appears for matching action', done => {
     const iamConfig = {
       http: config.http,
@@ -388,9 +429,49 @@ describe('APIdoc', () => {
               field: 'settings',
               type: 'object',
               description: 'Settings',
-              // action key must match the action name ('find'), not 'response.find'
               iamPermissionsFor: [
-                { action: 'find', value: ['user.settings'] }
+                { action: 'response.find', value: ['user.settings'] }
+              ]
+            }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find' }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(iamConfig, params)
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      const doc = _.first(result)
+      const responseField = _.find(doc.response.fields, { field: 'settings' })
+      expect(responseField.iamPermissions).to.eql(['user.settings'])
+      return done()
+    })
+  })
+
+  it('Check that iamPermissionsFor with action "response" applies to all response contexts', done => {
+    const iamConfig = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            {
+              actions: ['find'],
+              field: '-',
+              description: 'No request parameters'
+            },
+            {
+              actions: ['response'],
+              field: 'settings',
+              type: 'object',
+              description: 'Settings',
+              iamPermissionsFor: [
+                { action: 'response', value: ['user.settings'] }
               ]
             }
           ]
