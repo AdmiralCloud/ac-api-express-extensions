@@ -12,7 +12,7 @@ const acaee = () => {
   }
 
   // field properties that can be string or object (if differs for different actions)
-  const objFields = [{ docField: 'enumFor', property: 'enum' }]
+  const objFields = [{ docField: 'enumFor', property: 'enum' }, { docField: 'iamPermissionsFor', property: 'iamPermissions' }]
 
 
   // PUBLIC
@@ -140,8 +140,8 @@ const acaee = () => {
 
     const prepareFields = (fields, httpMethod) => {
       const fieldParameters = {
-        request: ['field', 'type', 'required', 'description', 'location', 'properties', 'defaultsTo', 'enum', 'range','nullAllowed', 'deprecated', 'beta', 'experimental', 'retired'],
-        response: ['field', 'type', 'description', 'properties', 'defaultsTo', 'enum', 'range', 'nullAllowed', 'deprecated', 'beta', 'experimental', 'retired', 'optional']
+        request: ['field', 'type', 'required', 'description', 'location', 'properties', 'defaultsTo', 'enum', 'range','nullAllowed', 'deprecated', 'beta', 'experimental', 'retired', 'iamPermissions'],
+        response: ['field', 'type', 'description', 'properties', 'defaultsTo', 'enum', 'range', 'nullAllowed', 'deprecated', 'beta', 'experimental', 'retired', 'optional', 'iamPermissions']
       }
       
       const processFields = (fieldsToProcess) => {
@@ -151,7 +151,16 @@ const acaee = () => {
             // only convert if array
             let apiDocField = _.get(f, objField.docField)
             if (_.isArray(apiDocField)) {
-              let item = _.find(apiDocField, { action })
+              // For response context: try 'response.{action}', then 'response', then raw action
+              // For request context: try raw action only
+              let item
+              if (httpMethod !== 'request') {
+                item = _.find(apiDocField, { action: httpMethod + '.' + action })
+                    || _.find(apiDocField, { action: httpMethod })
+              }
+              else {
+                item = _.find(apiDocField, { action })
+              }
               _.set(f, objField.property, _.get(item, 'value'))
             }
           })

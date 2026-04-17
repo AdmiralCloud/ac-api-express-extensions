@@ -234,6 +234,300 @@ describe('APIdoc', () => {
     })
   })
 
+  it('Check that iamPermissions on a request field is included in APIdoc output', done => {
+    const iamConfig = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            {
+              actions: ['find'],
+              field: 'id',
+              type: 'integer',
+              description: 'User ID'
+            },
+            {
+              actions: ['find'],
+              field: 'extendedDetails',
+              type: 'object',
+              description: 'Extended user details',
+              iamPermissions: ['user.extendedDetails'],
+              properties: [
+                {
+                  field: 'address',
+                  type: 'string',
+                  description: 'User address',
+                  iamPermissions: ['user.extendedDetails']
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find' }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(iamConfig, params)
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      const doc = _.first(result)
+      const field = _.find(doc.request.fields, { field: 'extendedDetails' })
+      expect(field.iamPermissions).to.eql(['user.extendedDetails'])
+      return done()
+    })
+  })
+
+  it('Check that iamPermissions on a nested property is included in APIdoc output', done => {
+    const iamConfig = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            {
+              actions: ['find'],
+              field: 'extendedDetails',
+              type: 'object',
+              description: 'Extended user details',
+              iamPermissions: ['user.extendedDetails'],
+              properties: [
+                {
+                  field: 'address',
+                  type: 'string',
+                  description: 'User address',
+                  iamPermissions: ['user.extendedDetails']
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find' }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(iamConfig, params)
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      const doc = _.first(result)
+      const field = _.find(doc.request.fields, { field: 'extendedDetails' })
+      const nested = _.find(field.properties, { field: 'address' })
+      expect(nested.iamPermissions).to.eql(['user.extendedDetails'])
+      return done()
+    })
+  })
+
+  it('Check that iamPermissions on a response field is included in APIdoc output', done => {
+    const iamConfig = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            {
+              actions: ['find'],
+              field: 'id',
+              type: 'integer',
+              description: 'User ID'
+            },
+            {
+              actions: ['response.find'],
+              field: 'id',
+              type: 'integer',
+              description: 'User ID'
+            },
+            {
+              actions: ['response.find'],
+              field: 'internalScore',
+              type: 'integer',
+              description: 'Internal score',
+              iamPermissions: ['user.internalData']
+            }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find' }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(iamConfig, params)
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      const doc = _.first(result)
+      const field = _.find(doc.response.fields, { field: 'internalScore' })
+      expect(field.iamPermissions).to.eql(['user.internalData'])
+      return done()
+    })
+  })
+
+  it('Check that iamPermissionsFor with action "find" does NOT apply to response fields', done => {
+    const iamConfig = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            {
+              actions: ['find'],
+              field: '-',
+              description: 'No request parameters'
+            },
+            {
+              actions: ['response.find'],
+              field: 'settings',
+              type: 'object',
+              description: 'Settings',
+              iamPermissionsFor: [
+                { action: 'find', value: ['user.settings'] }
+              ]
+            }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find' }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(iamConfig, params)
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      const doc = _.first(result)
+      const responseField = _.find(doc.response.fields, { field: 'settings' })
+      expect(responseField.iamPermissions).to.be.undefined
+      return done()
+    })
+  })
+
+  it('Check that iamPermissionsFor is action-specific and only appears for matching action', done => {
+    const iamConfig = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            {
+              // placeholder so prepareDocumentation finds at least one request field
+              actions: ['find'],
+              field: '-',
+              description: 'No request parameters'
+            },
+            {
+              actions: ['response.find'],
+              field: 'settings',
+              type: 'object',
+              description: 'Settings',
+              iamPermissionsFor: [
+                { action: 'response.find', value: ['user.settings'] }
+              ]
+            }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find' }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(iamConfig, params)
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      const doc = _.first(result)
+      const responseField = _.find(doc.response.fields, { field: 'settings' })
+      expect(responseField.iamPermissions).to.eql(['user.settings'])
+      return done()
+    })
+  })
+
+  it('Check that iamPermissionsFor with action "response" applies to all response contexts', done => {
+    const iamConfig = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            {
+              actions: ['find'],
+              field: '-',
+              description: 'No request parameters'
+            },
+            {
+              actions: ['response'],
+              field: 'settings',
+              type: 'object',
+              description: 'Settings',
+              iamPermissionsFor: [
+                { action: 'response', value: ['user.settings'] }
+              ]
+            }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find' }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(iamConfig, params)
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      const doc = _.first(result)
+      const responseField = _.find(doc.response.fields, { field: 'settings' })
+      expect(responseField.iamPermissions).to.eql(['user.settings'])
+      return done()
+    })
+  })
+
+  it('Check that fields without iamPermissions do not have the property in APIdoc output', done => {
+    const iamConfig = {
+      http: config.http,
+      apiDoc: {
+        user: {
+          fields: [
+            {
+              actions: ['find'],
+              field: 'id',
+              type: 'integer',
+              description: 'User ID'
+            }
+          ]
+        }
+      }
+    }
+
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [{ method: 'get', path: '/v1/user', action: 'find' }]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(iamConfig, params)
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      const doc = _.first(result)
+      const field = _.find(doc.request.fields, { field: 'id' })
+      expect(field.iamPermissions).to.be.undefined
+      return done()
+    })
+  })
+
   it('Check that only routes without apiDoc.enabled=false are included', done => {
     const configWithMultipleActions = {
       http: config.http,
