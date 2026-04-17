@@ -140,8 +140,8 @@ const acaee = () => {
 
     const prepareFields = (fields, httpMethod) => {
       const fieldParameters = {
-        request: ['field', 'type', 'required', 'description', 'location', 'properties', 'defaultsTo', 'enum', 'range','nullAllowed', 'deprecated', 'beta', 'experimental', 'retired'],
-        response: ['field', 'type', 'description', 'properties', 'defaultsTo', 'enum', 'range', 'nullAllowed', 'deprecated', 'beta', 'experimental', 'retired', 'optional']
+        request: ['field', 'type', 'required', 'description', 'location', 'properties', 'defaultsTo', 'enum', 'range','nullAllowed', 'deprecated', 'beta', 'experimental', 'retired', 'iamPermissions'],
+        response: ['field', 'type', 'description', 'properties', 'defaultsTo', 'enum', 'range', 'nullAllowed', 'deprecated', 'beta', 'experimental', 'retired', 'optional', 'iamPermissions']
       }
       
       const processFields = (fieldsToProcess) => {
