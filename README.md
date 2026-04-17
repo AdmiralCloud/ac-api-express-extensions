@@ -29,7 +29,7 @@ const params = req.allParams()
 
 Query and path parameters that look like numbers are automatically cast to `integer` or `float`.
 
-If the request contains the header `x-admiralcloud-hash` (signed payloads), an additional `req.allParamsOriginal()` function is attached that returns the unmodified parameters as they arrived — before sanitizing or defaults are applied.
+If the request contains the header `x-admiralcloud-hash` (signed payloads), an additional `req.allParamsOriginal()` function is attached. It returns a snapshot of the merged, number-cast parameters taken before the sanitizer runs and before any defaults are applied — useful for verifying signed payloads against the exact values that were used to compute the signature.
 
 ```
 const original = req.allParamsOriginal()
@@ -122,7 +122,7 @@ These values are optional and will default to API's config.http.apiDoc fields
 |---|---|---|
 |actions|array|List of actions for which this field is relevant*|
 |**field**|string|Name of the field (required)|
-|type|string|Data type of the field - see ac-sanitizer for available types|
+|type|string|Data type of the field - see [Available types](#available-types) below|
 |description|string/array|Description of the field. Can be a string or an array with action-specific descriptions*|
 |requiredFor|array|Actions the field is required for. Can have additional conditions|
 |nullAllowed|boolean|If true, the field can be null for all actions|
@@ -144,6 +144,65 @@ These values are optional and will default to API's config.http.apiDoc fields
 |iamPermissions|array|Additional IAM permissions required to see this field (beyond the endpoint-level permission). Rendered as inline badges in APIdoc.|
 
 
+### Available types
+
+Primitive types:
+
+| Type | Description |
+|---|---|
+| `string` | Any string. Optional: `minLength`, `maxLength` |
+| `integer` | Whole number (32-bit unsigned by default). Set `subtype: 'signed'` for negative values |
+| `long` | 64-bit integer |
+| `short` | 16-bit integer |
+| `float` | Floating-point number |
+| `boolean` | `true` or `false` |
+
+Complex types:
+
+| Type | Description |
+|---|---|
+| `array` | Array. Optional: `valueType` (type of each element), `minSize`, `maxSize`, `unique` |
+| `object` | Plain object. Use `properties` to define nested fields. Set `strict: true` to reject unknown keys |
+| `arrayOfObjects` | Convention for documentation only — use `array` with `properties` for sanitizing |
+
+Special/format types:
+
+| Type | Description |
+|---|---|
+| `date` | Date or datetime string. Optional: `dateFormat` (e.g. `YYYY-MM-DD`) |
+| `email` | Valid email address |
+| `url` | Valid URL. Optional: `protocols` (default `['http','https']`), `require_tld`, `require_protocol` |
+| `fqdn` | Fully qualified domain name. Optional: `wildcardAllowed` |
+| `uuid` | UUID string. Optional: `uuidVersion` (default `4`) |
+| `ip` | IP address (v4 or v6). Optional: `version`, `anonymize` |
+| `cidr` | CIDR notation or array of CIDR objects |
+| `base64` | Base64 string. Set `convert: true` to decode the value |
+| `hexColor` | Hex color string (e.g. `#ff0000`) |
+| `rgb` | RGB color string (e.g. `10,100,255` or `rgb(10,100,255)`) |
+| `gps` | Comma-separated `lat,lng` or `lat,lng,distance` |
+| `ratio` | Ratio string in `NUMBER:NUMBER` format |
+| `hashids` | Hashids-encoded string — decoded to array on input |
+| `countryCode` | ISO 3166-1 alpha-2 country code |
+| `fileExtension` | Valid file extension (without leading dot) |
+| `iso-639` | ISO 639 language code (tries 639-2, falls back to 639-1). Optional: `convert` |
+| `iso-639-1` | ISO 639-1 two-letter language code |
+| `iso-639-2` | ISO 639-2 three-letter language code |
+
+Union types (resolved at runtime):
+
+| Type | Description |
+|---|---|
+| `integer \| string` | Accepts either an integer or a string |
+| `integer \| boolean` | Accepts either an integer or a boolean |
+
+Special `enum` shortcuts (pass as string instead of array):
+
+| Value | Description |
+|---|---|
+| `'iso-639-1'` | All valid ISO 639-1 codes |
+| `'iso-639-2'` | All valid ISO 639-2 codes |
+| `'countrylist'` | All country names from ac-countrylist |
+
 ### Details on certain fields
 #### Actions
 Make sure that response uses either just "response" or "response.action"
@@ -160,10 +219,23 @@ All string/array types work like this:
 * if you use an array, every action will use the related entry in array
 
 #### Conditions on requiredFor fields
-You can use the following conditions:
-```
-// NOT -> the field (login) is required if "not" field (id) is not set
-{ action: 'login', condition: { not: 'id' } },
+`condition` can be a single condition object or an array of condition objects (all must be true).
+
+```js
+// NOT: required if 'otherId' is falsy
+{ action: 'find', condition: { op: 'not', field: 'otherId' } }
+
+// EQUALS: required if 'type' equals 'advanced'
+{ action: 'find', condition: { field: 'type', value: 'advanced' } }
+
+// INCLUDE: required if 'type' is one of the given values
+{ action: 'find', condition: { op: 'include', field: 'type', value: ['advanced', 'expert'] } }
+
+// TRUTHY: required if 'featureFlag' is set and truthy
+{ action: 'find', condition: { field: 'featureFlag' } }
+
+// MULTIPLE conditions (all must be true - AND logic)
+{ action: 'find', condition: [{ op: 'not', field: 'fromLogs.enabled' }, { op: 'not', field: 's3.enabled' }] }
 ```
 
 #### Endpoints with no request parameters
