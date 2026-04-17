@@ -1,3 +1,11 @@
+## [1.1.37](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.36..v1.1.37) (2026-04-17 07:50:51)
+
+
+### Bug Fix
+
+
+* **App:** Package updates | MP | [0813f44da80648ead676781119ec8b142c464b89](https://github.com/admiralcloud/ac-api-express-extensions/commit/0813f44da80648ead676781119ec8b142c464b89)    
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ## [1.1.36](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.35..v1.1.36) (2026-04-04 11:14:18)
 
 
