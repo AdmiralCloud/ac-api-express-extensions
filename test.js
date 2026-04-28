@@ -108,6 +108,74 @@ describe('Sanitizing', () => {
   })
 })
 
+describe('Sanitizing with iamPermissions', () => {
+  const iamConfig = {
+    http: config.http,
+    apiDoc: {
+      user: {
+        fields: [
+          {
+            actions: ['find'],
+            field: 'id',
+            type: 'integer',
+            description: 'User ID'
+          },
+          {
+            actions: ['find'],
+            field: 'internalScore',
+            type: 'integer',
+            description: 'Internal score',
+            iamPermissions: ['user.internalData']
+          }
+        ]
+      }
+    }
+  }
+
+  it('Field with iamPermissions - user has matching permission in res.locals.iam -> field is included', done => {
+    const req = { query: {}, params: {}, body: { id: 1, internalScore: 42 } }
+    const res = { locals: { iam: [{ action: 'user.internalData', allow: true }, { action: 'user.read', allow: true }] } }
+
+    acaee.allParams(req, res, () => {
+      acaee.sanitizer(iamConfig, { controller: 'user', action: 'find' }, req, res, () => {
+        const params = req.allParams()
+        expect(params.internalScore).to.equal(42)
+        return done()
+      })
+    })
+  })
+
+  it('Field with iamPermissions - user lacks permission -> error returned', done => {
+    const req = { query: {}, params: {}, body: { id: 1, internalScore: 42 } }
+    const res = {
+      locals: { iam: [{ action: 'user.read', allow: true }] },
+      miscError: (error) => {
+        expect(error.message).to.equal('internalScore_iamPermissionNotSufficient')
+        return done()
+      }
+    }
+
+    acaee.allParams(req, res, () => {
+      acaee.sanitizer(iamConfig, { controller: 'user', action: 'find' }, req, res, () => {
+        done('shouldNotSucceed')
+      })
+    })
+  })
+
+  it('Field with iamPermissions - res.locals.iam absent -> check is skipped, field is included', done => {
+    const req = { query: {}, params: {}, body: { id: 1, internalScore: 42 } }
+    const res = { locals: {} }
+
+    acaee.allParams(req, res, () => {
+      acaee.sanitizer(iamConfig, { controller: 'user', action: 'find' }, req, res, () => {
+        const params = req.allParams()
+        expect(params.internalScore).to.equal(42)
+        return done()
+      })
+    })
+  })
+})
+
 describe('Multi-Conditions', () => {
   const req = {
     query: { id: 1 },
