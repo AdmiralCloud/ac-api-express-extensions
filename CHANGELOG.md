@@ -1,3 +1,27 @@
+## [1.1.40](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.39..v1.1.40) (2026-04-28 14:46:32)
+
+
+### Bug Fix
+
+
+* **sanitizer:** Process arrays in testmode | MP | [687b801cc59cfd0a3f08602c262152def4a8c74c](https://github.com/admiralcloud/ac-api-express-extensions/commit/687b801cc59cfd0a3f08602c262152def4a8c74c)    
+Make sure arrays are also checked for NULL values  
+Related issues: [browse/AC-8606#AC-8606](https://admiralcloud.atlassian.net/browse/AC-8606)
+* **sanitizer:** Send IAM permission to sanitizer | MP | [01a6b928ed06628e0cf51e8b18ca4b56c313ef3b](https://github.com/admiralcloud/ac-api-express-extensions/commit/01a6b928ed06628e0cf51e8b18ca4b56c313ef3b)    
+Send IAM permission to ac-sanitizer. Remove null values from response in testmode  
+Related issues: [browse/AC-8606#AC-8606](https://admiralcloud.atlassian.net/browse/AC-8606)
+### Tests
+
+
+* **sanitizer:** Added test for IAM permissions | MP | [3b470480b40a5f9efd70c1b5630da915967ad1a9](https://github.com/admiralcloud/ac-api-express-extensions/commit/3b470480b40a5f9efd70c1b5630da915967ad1a9)    
+Added test for IAM permissions  
+Related issues: [browse/AC-8606#AC-8606](https://admiralcloud.atlassian.net/browse/AC-8606)
+### Chores
+
+
+* **Misc:** Updated packages | MP | [53fd79a43932bad3561888336edd391534c0d71a](https://github.com/admiralcloud/ac-api-express-extensions/commit/53fd79a43932bad3561888336edd391534c0d71a)    
+Updated packages  
+Related issues: [browse/AC-8606#AC-8606](https://admiralcloud.atlassian.net/browse/AC-8606)
 ## [1.1.39](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.38..v1.1.39) (2026-04-24 19:06:55)
 
 
