@@ -279,10 +279,10 @@ ac-ip@^5.0.2:
     ip-address "^10.1.0"
     lodash "4.x"
 
-ac-sanitizer@^6.0.7:
-  version "6.0.7"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-6.0.7.tgz#6c6a296f052c60094c02bab3d4202f6ddc865b86"
-  integrity sha512-B37Oc6eTJEEpB+DgvrZ07bhgrOMwPsmSZ1FkITgU+GRGGi6jVXjoAIyzYNQGlV7k7jEexZs11CVUeLWzbcfoUA==
+ac-sanitizer@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-6.1.0.tgz#04c989344bbe3a00d2ce7ad08a7901d3f5fc5cdd"
+  integrity sha512-zuRlfE/qz87pDgMZ4ADdfdVu8I4Kyv+apvUYMCJjxWX3HVBESFD+ZVKJ82HG38eSe+SXNDxhVWlOk5uw6ddYxQ==
   dependencies:
     ac-countrylist "^1.0.19"
     ac-file-extensions "^2.0.23"

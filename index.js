@@ -473,6 +473,24 @@ const acaee = () => {
     return field
   }
 
+  const stripNullValues = (obj) => {
+    if (_.isArray(obj)) return _.map(obj, stripNullValues)
+    if (!_.isPlainObject(obj)) return obj
+    const result = {}
+    for (const [key, value] of Object.entries(obj)) {
+      if (value === null) continue
+      if (_.isArray(value)) {
+        result[key] = _.map(value, stripNullValues)
+      } else if (_.isPlainObject(value)) {
+        const nested = stripNullValues(value)
+        if (!_.isEmpty(nested)) result[key] = nested
+      } else {
+        result[key] = value
+      }
+    }
+    return result
+  }
+
   const sanitizer = (config, route, req, res, next) => {
     if (!config.apiDoc) return next()
     if (route.sanitizer) return next() // route based sanitizer is activated
@@ -485,9 +503,10 @@ const acaee = () => {
     let params = req.allParams()
     const checkPayload = params.checkPayload
     
-    // Cache admin level
+    // Cache admin level and IAM permissions
     const adminLevel = res.locals?.user?.adminLevel || req.user?.adminLevel || 0
-    
+    const userPermissions = _.map(_.filter(res.locals?.iam, { allow: true }), 'action')
+
     // Process main fields
     let fields = processFields(_.cloneDeep(def.fields), action, params)
     if (!_.size(fields)) return next()
@@ -499,7 +518,8 @@ const acaee = () => {
         fields: fieldsToProcess,
         omitFields: config.http?.sanitizer?.omitFields,
         ignoreUnknownFields: route.ignoreUnknownFields,
-        adminLevel
+        adminLevel,
+        userPermissions
       }
       return acsanitizer.checkAndSanitizeValues(fieldsToCheck)
     }
@@ -522,10 +542,11 @@ const acaee = () => {
       if (_.size(responseFields)) {
         const responseCheck = sanitizeFields(responseFields)
         if (responseCheck.error) return res.miscError(responseCheck.error)
-        
+
         params = responseCheck.params
+        params = stripNullValues(params)
       }
-      
+
       res.emit('releaseLock')
       return res.json(params)
     }
