@@ -474,15 +474,17 @@ const acaee = () => {
   }
 
   const stripNullValues = (obj) => {
+    if (_.isArray(obj)) return _.map(obj, stripNullValues)
     if (!_.isPlainObject(obj)) return obj
     const result = {}
     for (const [key, value] of Object.entries(obj)) {
       if (value === null) continue
-      if (_.isPlainObject(value)) {
+      if (_.isArray(value)) {
+        result[key] = _.map(value, stripNullValues)
+      } else if (_.isPlainObject(value)) {
         const nested = stripNullValues(value)
         if (!_.isEmpty(nested)) result[key] = nested
-      } 
-      else {
+      } else {
         result[key] = value
       }
     }
