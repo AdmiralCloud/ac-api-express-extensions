@@ -16,8 +16,8 @@
   "devDependencies": {
     "ac-semantic-release": "^1.0.2",
     "chai": "^4.5.0",
-    "eslint": "^10.2.1",
-    "globals": "^17.5.0",
+    "eslint": "^10.4.0",
+    "globals": "^17.6.0",
     "mocha": "^11.7.5"
   },
   "scripts": {
