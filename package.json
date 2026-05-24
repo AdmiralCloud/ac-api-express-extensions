@@ -10,7 +10,7 @@
   "author": "Mark Poepping <mark.poepping@admiralcloud.com>",
   "license": "MIT",
   "dependencies": {
-    "ac-sanitizer": "^6.1.0",
+    "ac-sanitizer": "^6.1.2",
     "is-number": "^7.0.0"
   },
   "devDependencies": {
@@ -18,7 +18,7 @@
     "chai": "^4.5.0",
     "eslint": "^10.4.0",
     "globals": "^17.6.0",
-    "mocha": "^11.7.5"
+    "mocha": "^11.7.6"
   },
   "scripts": {
     "test": "mocha  --timeout 60000 --bail --exit --slow 1000 --colors ./test.js || :"
