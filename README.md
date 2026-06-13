@@ -329,6 +329,19 @@ GET /v1/user/apidoc
 
 ```
 
+### Securing the /apidoc endpoint
+By default the `/apidoc` route is public. To require a valid session, set `http.apiDoc.policies` in your app config to the name(s) of the policies that should be applied. The framework will then add those policies as middleware to every `/apidoc` route automatically — no per-controller configuration needed.
+
+```js
+http: {
+  apiDoc: {
+    enabled: true,
+    apiPrefix: 'v1',
+    policies: ['sessionPolicy'] // name(s) of your auth/session policies
+  }
+}
+```
+
 ### Query parameters for the /apidoc endpoint
 | Parameter | Description |
 |---|---|
