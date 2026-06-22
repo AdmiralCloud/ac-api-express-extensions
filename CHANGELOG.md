@@ -1,3 +1,17 @@
+## [1.1.43](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.42..v1.1.43) (2026-06-22 15:08:38)
+
+
+### Bug Fix
+
+
+* **App:** Package updates | MP | [2630df42fe5c6a9a939c87e990ad3cef790b97e6](https://github.com/admiralcloud/ac-api-express-extensions/commit/2630df42fe5c6a9a939c87e990ad3cef790b97e6)    
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+### Documentation
+
+
+* **Misc:** Added info how to secure APIdoc | MP | [008c2936da99443b3948ec422283788ba5a4c11b](https://github.com/admiralcloud/ac-api-express-extensions/commit/008c2936da99443b3948ec422283788ba5a4c11b)    
+Added info how to secure APIdoc with a policy on API level  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 ## [1.1.42](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.41..v1.1.42) (2026-05-24 05:48:00)
 
 
