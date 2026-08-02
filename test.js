@@ -596,6 +596,47 @@ describe('APIdoc', () => {
     })
   })
 
+  it('Active route is preferred over deprecated route for the same action', done => {
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [
+        { method: 'get', path: '/v1/user/find/:id', action: 'find', deprecated: true },
+        { method: 'get', path: '/v1/user/:id', action: 'find' }
+      ]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(config, params)
+
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      expect(result).to.have.length(1)
+      expect(result[0].path).to.eql('/v1/user/:id')
+      expect(result[0].deprecated).to.be.undefined
+      return done()
+    })
+  })
+
+  it('Deprecated route is shown when no active route exists for the action', done => {
+    const params = {
+      name: 'user',
+      availableActions: ['find'],
+      routes: [
+        { method: 'get', path: '/v1/user/find/:id', action: 'find', deprecated: true }
+      ]
+    }
+
+    const { apiDoc } = acaee.apidocRoute(config, params)
+
+    apiDoc({}, (err, result) => {
+      if (err) return done(err)
+      expect(result).to.have.length(1)
+      expect(result[0].path).to.eql('/v1/user/find/:id')
+      expect(result[0].deprecated).to.eql(true)
+      return done()
+    })
+  })
+
   it('Check that only routes without apiDoc.enabled=false are included', done => {
     const configWithMultipleActions = {
       http: config.http,
