@@ -1,3 +1,18 @@
+## [1.1.46](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.45..v1.1.46) (2026-08-02 19:21:57)
+
+
+### Bug Fix
+
+
+* **apidocRoute:** Prefer active route over deprecated | MP | [c1374ecab9a569e1a60e523ceb1d8b83f2277b4b](https://github.com/admiralcloud/ac-api-express-extensions/commit/c1374ecab9a569e1a60e523ceb1d8b83f2277b4b)    
+If we have an active route and a deprecated one for the same action, prefer the active one for APIdocs  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+### Chores
+
+
+* **Misc:** Updated packages | MP | [dfd2ec6f641cd04c6256db9c9c83d7355b739197](https://github.com/admiralcloud/ac-api-express-extensions/commit/dfd2ec6f641cd04c6256db9c9c83d7355b739197)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 ## [1.1.45](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.44..v1.1.45) (2026-08-01 14:02:16)
 
 
