@@ -14,11 +14,11 @@
     "is-number": "^7.0.0"
   },
   "devDependencies": {
-    "ac-semantic-release": "^1.0.2",
+    "ac-semantic-release": "^1.0.4",
     "chai": "^4.5.0",
     "eslint": "^10.11.0",
     "globals": "^17.12.0",
-    "mocha": "^11.8.0"
+    "mocha": "^12.0.2"
   },
   "scripts": {
     "test": "mocha  --timeout 60000 --bail --exit --slow 1000 --colors ./test.js || :"
