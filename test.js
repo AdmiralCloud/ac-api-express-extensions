@@ -176,6 +176,63 @@ describe('Sanitizing with iamPermissions', () => {
   })
 })
 
+describe('filterResponseByPermissions', () => {
+  const responseConfig = {
+    apiDoc: {
+      message: {
+        fields: [
+          { actions: ['response.findlogs'], field: 'subject' },
+          { actions: ['response.findlogs'], field: 'text', iamPermissions: ['customer.manageComplianceSettings'] },
+          {
+            actions: ['response.findlogs'],
+            field: 'nested',
+            properties: [
+              { field: 'visible' },
+              { field: 'hidden', iamPermissions: ['customer.manageComplianceSettings'] }
+            ]
+          }
+        ]
+      }
+    }
+  }
+
+  it('strips a field with iamPermissions when the caller lacks the permission', () => {
+    const body = { subject: 'hi', text: 'secret content' }
+    const result = acaee.filterResponseByPermissions({ config: responseConfig, controller: 'message', action: 'findlogs', body, userPermissions: ['contact.find'] })
+    expect(result).to.eql({ subject: 'hi' })
+  })
+
+  it('keeps a field with iamPermissions when the caller has a matching permission', () => {
+    const body = { subject: 'hi', text: 'secret content' }
+    const result = acaee.filterResponseByPermissions({ config: responseConfig, controller: 'message', action: 'findlogs', body, userPermissions: ['customer.manageComplianceSettings'] })
+    expect(result).to.eql(body)
+  })
+
+  it('filters an array of response objects item by item', () => {
+    const body = [{ subject: 'a', text: 'secret a' }, { subject: 'b', text: 'secret b' }]
+    const result = acaee.filterResponseByPermissions({ config: responseConfig, controller: 'message', action: 'findlogs', body, userPermissions: [] })
+    expect(result).to.eql([{ subject: 'a' }, { subject: 'b' }])
+  })
+
+  it('recurses into nested properties and strips only the restricted nested field', () => {
+    const body = { subject: 'hi', nested: { visible: 1, hidden: 2 } }
+    const result = acaee.filterResponseByPermissions({ config: responseConfig, controller: 'message', action: 'findlogs', body, userPermissions: [] })
+    expect(result).to.eql({ subject: 'hi', nested: { visible: 1 } })
+  })
+
+  it('keeps a field without iamPermissions regardless of userPermissions', () => {
+    const body = { subject: 'hi' }
+    const result = acaee.filterResponseByPermissions({ config: responseConfig, controller: 'message', action: 'findlogs', body, userPermissions: [] })
+    expect(result).to.eql({ subject: 'hi' })
+  })
+
+  it('returns the body unchanged if no APIdoc definition exists for the controller', () => {
+    const body = { subject: 'hi', text: 'secret content' }
+    const result = acaee.filterResponseByPermissions({ config: { apiDoc: {} }, controller: 'message', action: 'findlogs', body, userPermissions: [] })
+    expect(result).to.eql(body)
+  })
+})
+
 describe('Multi-Conditions', () => {
   const req = {
     query: { id: 1 },

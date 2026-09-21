@@ -603,6 +603,62 @@ const acaee = () => {
     return mapFieldDefinition(fieldToUse, action)
   }
 
+  /**
+   * Filters an outgoing RESPONSE body against APIdoc field definitions, removing any field for which
+   * iamPermissions is set and the caller does not have a matching permission.
+   *
+   * Unlike sanitizer() (which validates/errors on INCOMING request fields), this never errors - a field the
+   * caller is not allowed to see is silently stripped from the response, since a response is not something the
+   * caller can "correct" by resubmitting.
+   *
+   * @param params.config OBJECT - your app config, with config.apiDoc set (same shape as used by sanitizer/apidocRoute)
+   * @param params.controller STRING - controller name (key into config.apiDoc)
+   * @param params.action STRING - action to filter fields for, e.g. 'find' or 'findlogs'. Response fields are
+   *   looked up as 'response.<action>' first, falling back to 'response' (same lookup order as prepareDocumentation)
+   * @param params.body OBJECT|ARRAY - the response payload to filter (arrays are filtered item by item)
+   * @param params.userPermissions ARRAY - IAM permission action strings the caller currently has (e.g. from res.locals.iam)
+   */
+  const filterResponseByPermissions = (params) => {
+    const config = _.get(params, 'config')
+    const controller = _.get(params, 'controller')
+    const action = _.toLower(_.get(params, 'action', 'response'))
+    const body = _.get(params, 'body')
+    const userPermissions = _.get(params, 'userPermissions', [])
+
+    const def = _.get(config, 'apiDoc.' + controller)
+    if (_.isEmpty(def)) return body
+
+    let responseAction = 'response.' + action
+    let fields = _.filter(_.get(def, 'fields'), field => indexOfCI(_.get(field, 'actions'), responseAction))
+    if (!_.size(fields)) {
+      responseAction = 'response'
+      fields = _.filter(_.get(def, 'fields'), field => indexOfCI(_.get(field, 'actions'), responseAction))
+    }
+    if (!_.size(fields)) return body
+
+    const filterObj = (obj, fieldDefs) => {
+      if (_.isArray(obj)) return _.map(obj, item => filterObj(item, fieldDefs))
+      if (!_.isPlainObject(obj)) return obj
+
+      const result = {}
+      _.forEach(obj, (value, key) => {
+        const fieldDef = _.find(fieldDefs, { field: key })
+        const requiredPermissions = _.get(fieldDef, 'iamPermissions')
+        if (_.size(requiredPermissions) && !_.size(_.intersection(userPermissions, requiredPermissions))) return
+
+        if (_.get(fieldDef, 'properties') && (_.isPlainObject(value) || _.isArray(value))) {
+          result[key] = filterObj(value, _.get(fieldDef, 'properties'))
+        }
+        else {
+          result[key] = value
+        }
+      })
+      return result
+    }
+
+    return filterObj(body, fields)
+  }
+
   return {
     defaultValues,
     markedFields,
@@ -611,7 +667,8 @@ const acaee = () => {
     allParams,
     mapFieldDefinition,
     sanitizer,
-    fieldDefinition
+    fieldDefinition,
+    filterResponseByPermissions
   }
 }
 
