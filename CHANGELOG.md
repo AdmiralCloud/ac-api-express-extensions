@@ -1,3 +1,21 @@
+## [1.1.48](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.47..v1.1.48) (2026-09-21 07:54:39)
+
+
+### Bug Fix
+
+
+* **sanitizer:** Add filterResponseByPermissions for IAM-gated response fields | MP | [3c7e3a4318841235b9b77a21e1e44725dfff9395](https://github.com/admiralcloud/ac-api-express-extensions/commit/3c7e3a4318841235b9b77a21e1e44725dfff9395)    
+Add filterResponseByPermissions for IAM-gated response fields  
+Related issues: [browse/AC-9238#AC-9238](https://admiralcloud.atlassian.net/browse/AC-9238)
+* **Misc:** Package updates | MP | [bb16adf0a41680c3482e57b44d4cc69969a780c4](https://github.com/admiralcloud/ac-api-express-extensions/commit/bb16adf0a41680c3482e57b44d4cc69969a780c4)    
+Package updates  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+### Chores
+
+
+* **Misc:** Updated packages | MP | [2efd7b68a7762a46706e3ac0b50ee5af90825738](https://github.com/admiralcloud/ac-api-express-extensions/commit/2efd7b68a7762a46706e3ac0b50ee5af90825738)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 ## [1.1.47](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.46..v1.1.47) (2026-08-23 11:25:47)
 
 
