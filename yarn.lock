@@ -292,7 +292,7 @@ ac-file-extensions@^2.0.28:
     ac-semantic-release "^1.0.2"
     lodash "^4.18.1"
 
-ac-ip@^5.0.8:
+ac-ip@^5.0.9:
   version "5.0.9"
   resolved "https://registry.yarnpkg.com/ac-ip/-/ac-ip-5.0.9.tgz#f43464c0c833c03a742815c9968fe34c3e362686"
   integrity sha512-+XyhKqU0Sgy8yXU4He8zEQ8SsoZ7J55DQKVFpyxT3AUXwKSSfoGE+vBUKeCuO2c8IU0sIcSBmU2jcrsqF1q2zQ==
@@ -301,24 +301,32 @@ ac-ip@^5.0.8:
     ip-address "^10.5.0"
     lodash "4.x"
 
-ac-sanitizer@^6.1.6:
-  version "6.1.6"
-  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-6.1.6.tgz#4e00b74256d68531b3a84e682dca5550206a0097"
-  integrity sha512-zXPVRKhgZIO9VTr5qhjmn+i6NVA9ykRCK//y0GWVlyfYjYbG8+1VrX2aZBtAORVPP8F3ntvT/nQ5BgDW1dKVEA==
+ac-sanitizer@^6.1.7:
+  version "6.1.7"
+  resolved "https://registry.yarnpkg.com/ac-sanitizer/-/ac-sanitizer-6.1.7.tgz#8baf2455f3cff15e24e0adfd624666cd4ff4730d"
+  integrity sha512-2Rh0nJ26YAoEFs1Uyue4F3/Lze1ZCYc3m623loxO5Z3rrLWaXTI6BCwL+gbjaUNwcFdNVJJo4AaNQNTM7LbT9Q==
   dependencies:
     ac-countrylist "^1.0.25"
     ac-file-extensions "^2.0.28"
-    ac-ip "^5.0.8"
+    ac-ip "^5.0.9"
     chai "^4.5.0"
-    date-and-time "^4.5.1"
+    date-and-time "^4.6.0"
     hashids "^2.3.0"
     lodash "^4.18.1"
     validator "^13.15.35"
 
-ac-semantic-release@^1.0.2, ac-semantic-release@^1.0.4:
+ac-semantic-release@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/ac-semantic-release/-/ac-semantic-release-1.0.4.tgz#d36b76696fa62db4bc9d5b39ee273bdbb6be5adc"
   integrity sha512-KA0hSsPxEch9ET8LYlRhOTELlidX2YMuOwog4T5K2UH1gy7n9TYKI5bGXrogtZzcmPix515W22ExV0DkvXBc8A==
+  dependencies:
+    inquirer "^12.11.1"
+    lodash.merge "^4.6.2"
+
+ac-semantic-release@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/ac-semantic-release/-/ac-semantic-release-1.0.5.tgz#46e087a2529e358732520609d20b9c2a682115bf"
+  integrity sha512-ku/Vz/fYC79Fwg9uiy12Pwyo8q/tdJBE5uy5MNQP+R0gIu4XdPBs0y+0SbeaIxRkSoOi+Ei+AjV76vfKlZV+0g==
   dependencies:
     inquirer "^12.11.1"
     lodash.merge "^4.6.2"
@@ -470,10 +478,10 @@ cross-spawn@^7.0.6:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-date-and-time@^4.5.1:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/date-and-time/-/date-and-time-4.5.2.tgz#c63676673c9f5453dff5678c77b6ce44b92ab451"
-  integrity sha512-sTxw4gDN0K7usVzYzgz2gVXnJiGGa/X1P0XoUvOVqmxdk3nkbBe3DwjSdKCflfbuHzXFNX/RlKQuVxU1GJS1YA==
+date-and-time@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/date-and-time/-/date-and-time-4.6.0.tgz#8136a3e3284e7443aee8c92e5d3be47a51d488a2"
+  integrity sha512-vkntk7U6e6Xi8GfQiHh64TTE42tzkdFio0+rxz01nGrsf7xpRD+iAtcxrM2+UxXrW9vEwmos46vABTScEDoVSA==
 
 debug@^4.3.1, debug@^4.3.2, debug@^4.3.5:
   version "4.4.3"
