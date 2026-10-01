@@ -364,7 +364,8 @@ const acaee = () => {
           obj = JSON.parse(obj)
         }
         catch(e) {
-          console.error('%s | Middleware | Parsing body failed %j', e)
+          console.error('Middleware | Parsing %s failed: %s', field, e.message)
+          obj = undefined
         }
       }
 
@@ -481,10 +482,12 @@ const acaee = () => {
       if (value === null) continue
       if (_.isArray(value)) {
         result[key] = _.map(value, stripNullValues)
-      } else if (_.isPlainObject(value)) {
+      }
+      else if (_.isPlainObject(value)) {
         const nested = stripNullValues(value)
         if (!_.isEmpty(nested)) result[key] = nested
-      } else {
+      }
+      else {
         result[key] = value
       }
     }

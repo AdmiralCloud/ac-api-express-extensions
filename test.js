@@ -827,7 +827,7 @@ describe('All Params - extended', () => {
     console.error = () => {}
     acaee.allParams(req, {}, () => {
       console.error = originalError
-      expect(req.allParams).to.be.a('function')
+      expect(req.allParams()).to.eql({})
       return done()
     })
   })
