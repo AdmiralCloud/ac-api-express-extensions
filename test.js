@@ -827,7 +827,24 @@ describe('All Params - extended', () => {
     console.error = () => {}
     acaee.allParams(req, {}, () => {
       console.error = originalError
-      expect(req.allParams).to.be.a('function')
+      expect(req.allParams()).to.eql({})
+      return done()
+    })
+  })
+
+  it('does not log an error for a text/plain request without body', done => {
+    const req = {
+      headers: { 'content-type': 'text/plain' },
+      query: { id: 1 },
+      params: {}
+    }
+    let logged = false
+    const originalError = console.error
+    console.error = () => { logged = true }
+    acaee.allParams(req, {}, () => {
+      console.error = originalError
+      expect(logged).to.eql(false)
+      expect(req.allParams()).to.eql({ id: 1 })
       return done()
     })
   })
