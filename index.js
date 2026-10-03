@@ -359,7 +359,7 @@ const acaee = () => {
       let obj = _.get(req, field)
 
       // if text/plain
-      if (!_.isObject(obj) && _.startsWith(_.get(req, 'headers.content-type'), 'text/plain')) {
+      if (_.isString(obj) && !_.isEmpty(obj) && _.startsWith(_.get(req, 'headers.content-type'), 'text/plain')) {
         try {
           obj = JSON.parse(obj)
         }
