@@ -849,6 +849,24 @@ describe('All Params - extended', () => {
     })
   })
 
+  it('does not log an error for a whitespace-only text/plain body', done => {
+    const req = {
+      headers: { 'content-type': 'text/plain' },
+      query: { id: 1 },
+      params: {},
+      body: ' \n\t '
+    }
+    let logged = false
+    const originalError = console.error
+    console.error = () => { logged = true }
+    acaee.allParams(req, {}, () => {
+      console.error = originalError
+      expect(logged).to.eql(false)
+      expect(req.allParams()).to.eql({ id: 1 })
+      return done()
+    })
+  })
+
   it('provides allParamsOriginal for signed requests', done => {
     const req = {
       headers: { 'x-admiralcloud-hash': 'abc' },

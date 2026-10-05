@@ -359,13 +359,18 @@ const acaee = () => {
       let obj = _.get(req, field)
 
       // if text/plain
-      if (_.isString(obj) && !_.isEmpty(obj) && _.startsWith(_.get(req, 'headers.content-type'), 'text/plain')) {
-        try {
-          obj = JSON.parse(obj)
-        }
-        catch(e) {
-          console.error('Middleware | Parsing %s failed: %s', field, e.message)
+      if (_.isString(obj) && _.startsWith(_.get(req, 'headers.content-type'), 'text/plain')) {
+        if (_.trim(obj) === '') {
           obj = undefined
+        }
+        else {
+          try {
+            obj = JSON.parse(obj)
+          }
+          catch(e) {
+            console.error('Middleware | Parsing %s failed: %s', field, e.message)
+            obj = undefined
+          }
         }
       }
 
