@@ -359,12 +359,18 @@ const acaee = () => {
       let obj = _.get(req, field)
 
       // if text/plain
-      if (!_.isObject(obj) && _.startsWith(_.get(req, 'headers.content-type'), 'text/plain')) {
-        try {
-          obj = JSON.parse(obj)
+      if (_.isString(obj) && _.startsWith(_.get(req, 'headers.content-type'), 'text/plain')) {
+        if (_.trim(obj) === '') {
+          obj = undefined
         }
-        catch(e) {
-          console.error('%s | Middleware | Parsing body failed %j', e)
+        else {
+          try {
+            obj = JSON.parse(obj)
+          }
+          catch(e) {
+            console.error('Middleware | Parsing %s failed: %s', field, e.message)
+            obj = undefined
+          }
         }
       }
 
@@ -481,10 +487,12 @@ const acaee = () => {
       if (value === null) continue
       if (_.isArray(value)) {
         result[key] = _.map(value, stripNullValues)
-      } else if (_.isPlainObject(value)) {
+      }
+      else if (_.isPlainObject(value)) {
         const nested = stripNullValues(value)
         if (!_.isEmpty(nested)) result[key] = nested
-      } else {
+      }
+      else {
         result[key] = value
       }
     }
