@@ -1,3 +1,30 @@
+## [1.1.50](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.49..v1.1.50) (2026-10-06 17:04:47)
+
+
+### Bug Fix
+
+
+* **allParams:** Minor fix after code review | MP | [776be3bf300e6dc62262c0421f361cad47e5cc82](https://github.com/admiralcloud/ac-api-express-extensions/commit/776be3bf300e6dc62262c0421f361cad47e5cc82)    
+Fixed an issue with empty strings  
+Related issues: [browse/AC-9304#AC-9304](https://admiralcloud.atlassian.net/browse/AC-9304)
+* **allParams:** Skip JSON parsing of empty text/plain body | MP | [69b94ed4a6801165d0a0f1093ac2df441e339b21](https://github.com/admiralcloud/ac-api-express-extensions/commit/69b94ed4a6801165d0a0f1093ac2df441e339b21)    
+Skip JSON parsing of empty text/plain body  
+Related issues: [browse/AC-9304#AC-9304](https://admiralcloud.atlassian.net/browse/AC-9304)
+* **allParams:** Fix allParams parsing invalid text/plain body into character keys | MP | [640f36472d1780b32fc342033e9a69d98791f12f](https://github.com/admiralcloud/ac-api-express-extensions/commit/640f36472d1780b32fc342033e9a69d98791f12f)    
+Fix allParams parsing invalid text/plain body into character keys  
+Related issues: [browse/AC-9304#AC-9304](https://admiralcloud.atlassian.net/browse/AC-9304)
+### Tests
+
+
+* **Misc:** Improved test coverage | MP | [70b783c58320eaa1a797dc71d88e15a9341b5c09](https://github.com/admiralcloud/ac-api-express-extensions/commit/70b783c58320eaa1a797dc71d88e15a9341b5c09)    
+Added more tests  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
+### Chores
+
+
+* **Misc:** Updated packages | MP | [0b06cd93d09002b664d8d37c7b8df69cffb97915](https://github.com/admiralcloud/ac-api-express-extensions/commit/0b06cd93d09002b664d8d37c7b8df69cffb97915)    
+Updated packages  
+Related issues: [browse/master#master](https://admiralcloud.atlassian.net/browse/master)
 ## [1.1.49](https://github.com/admiralcloud/ac-api-express-extensions/compare/v1.1.48..v1.1.49) (2026-09-27 13:49:47)
 
 
