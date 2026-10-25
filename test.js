@@ -882,6 +882,11 @@ describe('All Params - extended', () => {
 })
 
 describe('mapFieldDefinition', () => {
+  it('matches requiredFor action case-insensitively', () => {
+    const field = acaee.mapFieldDefinition({ field: 'a', requiredFor: [{ action: 'updateUser' }] }, 'updateuser', {})
+    expect(field.required).to.eql(true)
+  })
+
   it('sets required=true if requiredFor has no condition', () => {
     const field = acaee.mapFieldDefinition({ field: 'a', requiredFor: [{ action: 'create' }] }, 'create', {})
     expect(field.required).to.eql(true)
@@ -1131,6 +1136,20 @@ describe('prepareDocumentation', () => {
   it('uses responseName for response fields', () => {
     const doc = acaee.prepareDocumentation({ controller: 'user', action: 'find', route, apiDoc: docConfig, responseName: 'special' })
     expect(_.map(doc.response.fields, 'field')).to.eql(['special'])
+  })
+
+  it('matches camelCased actions in descriptions, requiredFor, nullAllowedFor and description', () => {
+    const doc = acaee.prepareDocumentation({ controller: 'user', action: 'updateUser', route, apiDoc: {
+      user: {
+        descriptions: [{ action: 'updateUser', description: 'Update user' }],
+        fields: [{ actions: ['updateUser'], field: 'id', type: 'integer', requiredFor: [{ action: 'updateUser' }], nullAllowedFor: [{ action: 'updateUser' }], description: [{ action: 'updateUser', message: 'User ID' }] }]
+      }
+    } })
+    const field = _.find(doc.request.fields, { field: 'id' })
+    expect(doc.description).to.eql('Update user')
+    expect(field.required).to.eql(true)
+    expect(field.nullAllowed).to.eql(true)
+    expect(field.description).to.eql('User ID')
   })
 
   it('falls back to "response" if no response.action fields exist', () => {
