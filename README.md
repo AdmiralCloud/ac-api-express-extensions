@@ -118,17 +118,19 @@ These values are optional and will default to API's config.http.apiDoc fields
 
 
 ### Available fields/properties
+Properties without `For` (e.g. `enum`, `iamPermissions`) apply to all actions of the field. Properties with `For` (e.g. `enumFor`, `iamPermissionsFor`, `requiredFor`) hold an array of `{ action, ... }` entries and apply only to the listed actions (action matching is case-insensitive). If a `...For` array is set, it replaces the plain property completely: actions not listed get no value (`required` becomes `false`). Exception: `nullAllowedFor` is additive, see below. Do not mix both variants on the same field.
+
 |Property|Type|Description|
 |---|---|---|
 |actions|array|List of actions for which this field is relevant*|
 |**field**|string|Name of the field (required)|
 |type|string|Data type of the field - see [Available types](#available-types) below|
 |description|string/array|Description of the field. Can be a string or an array with action-specific descriptions*|
-|requiredFor|array|Actions the field is required for. Can have additional conditions|
-|nullAllowed|boolean|If true, the field can be null for all actions|
-|nullAllowedFor|array|Action-specific null permission, e.g. `[{ action: 'update' }]`. Also accepts the HTTP method.|
-|enum|array|List of allowed values|
-|enumFor|array|Action-specific allowed values, e.g. `[{ action: 'find', value: ['a', 'b'] }]`|
+|requiredFor|array|Actions the field is required for. Can have additional conditions. There is no plain `required` property: the field is required only for the listed actions, otherwise `false`|
+|nullAllowed|boolean|If true, the field can be null for all actions. Stays in effect even if `nullAllowedFor` is set|
+|nullAllowedFor|array|Action-specific null permission, e.g. `[{ action: 'update' }]`. Also accepts the HTTP method. Additive: it only sets `nullAllowed` to true for the listed actions and never overrides a plain `nullAllowed`|
+|enum|array|List of allowed values for all actions|
+|enumFor|array|Action-specific allowed values, e.g. `[{ action: 'find', value: ['a', 'b'] }]`. Action matching is case-insensitive. If set, it replaces `enum` completely: actions not listed get no `enum`|
 |range|array|Range of values [min, max]|
 |rangeDef|object|Dynamic range definition. Set `type: 'timestamp'` and `deviation` (seconds) to compute a time-based range at request time instead of using a fixed `range`|
 |defaultsTo|any|Default value applied to the field if it is not present in the request|
@@ -141,7 +143,8 @@ These values are optional and will default to API's config.http.apiDoc fields
 |experimental|boolean|If true, this field is marked as experimental|
 |retired|boolean|If true, this field is marked as retired|
 |optional|boolean|For response fields: marks the field as optional in the response|
-|iamPermissions|array|Additional IAM permissions required to see this field (beyond the endpoint-level permission). Rendered as inline badges in APIdoc.|
+|iamPermissions|array|Additional IAM permissions required to see this field (beyond the endpoint-level permission). Rendered as inline badges in APIdoc. Applies to all actions.|
+|iamPermissionsFor|array|Action-specific IAM permissions, e.g. `[{ action: 'find', value: ['user:read'] }]`. Action matching is case-insensitive. If set, it replaces `iamPermissions` completely: actions not listed get no `iamPermissions`|
 
 
 ### Available types

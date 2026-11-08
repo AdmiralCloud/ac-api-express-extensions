@@ -887,6 +887,49 @@ describe('mapFieldDefinition', () => {
     expect(field.required).to.eql(true)
   })
 
+  it('matches enumFor and iamPermissionsFor action case-insensitively', () => {
+    const field = acaee.mapFieldDefinition({
+      field: 'a',
+      enumFor: [{ action: 'updateUser', value: ['x'] }],
+      iamPermissionsFor: [{ action: 'updateUser', value: ['p'] }]
+    }, 'updateuser', {})
+    expect(field.enum).to.eql(['x'])
+    expect(field.iamPermissions).to.eql(['p'])
+  })
+
+  it('uses enum and iamPermissions for all actions if no ...For is set', () => {
+    const field = acaee.mapFieldDefinition({ field: 'a', enum: ['g'], iamPermissions: ['p'] }, 'anyAction', {})
+    expect(field.enum).to.eql(['g'])
+    expect(field.iamPermissions).to.eql(['p'])
+  })
+
+  it('enumFor and iamPermissionsFor replace enum and iamPermissions completely', () => {
+    const def = {
+      field: 'a',
+      enum: ['g'],
+      enumFor: [{ action: 'x', value: ['v'] }],
+      iamPermissions: ['p'],
+      iamPermissionsFor: [{ action: 'x', value: ['q'] }]
+    }
+    const listed = acaee.mapFieldDefinition(_.cloneDeep(def), 'x', {})
+    expect(listed.enum).to.eql(['v'])
+    expect(listed.iamPermissions).to.eql(['q'])
+    const notListed = acaee.mapFieldDefinition(_.cloneDeep(def), 'y', {})
+    expect(notListed.enum).to.eql(undefined)
+    expect(notListed.iamPermissions).to.eql(undefined)
+  })
+
+  it('requiredFor replaces a plain required value', () => {
+    const def = { field: 'a', required: true, requiredFor: [{ action: 'x' }] }
+    expect(acaee.mapFieldDefinition(_.cloneDeep(def), 'x', {}).required).to.eql(true)
+    expect(acaee.mapFieldDefinition(_.cloneDeep(def), 'y', {}).required).to.eql(false)
+  })
+
+  it('nullAllowedFor is additive and keeps a plain nullAllowed', () => {
+    const def = { field: 'a', nullAllowed: true, nullAllowedFor: [{ action: 'x' }] }
+    expect(acaee.mapFieldDefinition(_.cloneDeep(def), 'y', {}).nullAllowed).to.eql(true)
+  })
+
   it('sets required=true if requiredFor has no condition', () => {
     const field = acaee.mapFieldDefinition({ field: 'a', requiredFor: [{ action: 'create' }] }, 'create', {})
     expect(field.required).to.eql(true)
@@ -1007,6 +1050,38 @@ describe('Sanitizer - extended', () => {
     acaee.sanitizer(baseConfig, { controller: 'item', action: 'find' }, buildReq({ id: 'abc' }), res, () => done(new Error('should not call next')))
   })
 
+  it('matches field actions case-insensitively (action differs in case)', done => {
+    const camelConfig = {
+      http: config.http,
+      apiDoc: { item: { fields: [{ actions: ['updateUser'], field: 'id', type: 'integer' }] } }
+    }
+    const req = buildReq({ id: 1 })
+    acaee.sanitizer(camelConfig, { controller: 'item', action: 'updateuser' }, req, {}, () => {
+      expect(req.allParams()).to.eql({ id: 1 })
+      return done()
+    })
+  })
+
+  describe('requiredFor with camelCased action', () => {
+    const camelConfig = {
+      http: config.http,
+      apiDoc: { item: { fields: [{ actions: ['updateUser'], field: 'id', type: 'integer', requiredFor: [{ action: 'updateUser' }] }] } }
+    }
+
+    it('returns an error if the required field is missing', done => {
+      const res = { miscError: error => {
+        expect(error).to.exist
+        return done()
+      } }
+      acaee.sanitizer(camelConfig, { controller: 'item', action: 'updateuser' }, buildReq({}), res, () => done(new Error('should not call next')))
+    })
+
+    it('calls next if the required field is present', done => {
+      const res = { miscError: error => done(new Error('unexpected error ' + JSON.stringify(error))) }
+      acaee.sanitizer(camelConfig, { controller: 'item', action: 'updateuser' }, buildReq({ id: 1 }), res, () => done())
+    })
+  })
+
   it('responds with the checked payload in test environment', done => {
     const testConfig = { ...baseConfig, environment: 'test' }
     const req = buildReq({ id: 1, checkPayload: true, name: 'abc', extra: null })
@@ -1030,6 +1105,13 @@ describe('fieldDefinition', () => {
     const result = acaee.fieldDefinition(config, 'lastname', 'unknown', 'find')
     expect(result.message).to.eql('noAPIdoc')
     expect(result.additionalInfo).to.eql({ controller: 'unknown', action: 'find' })
+  })
+
+  it('finds the field if the action differs in case', () => {
+    const camelConfig = { apiDoc: { user: { fields: [{ actions: ['updateUser'], field: 'id', type: 'integer' }] } } }
+    const result = acaee.fieldDefinition(camelConfig, 'id', 'user', 'updateuser')
+    expect(result.field).to.eql('id')
+    expect(result.type).to.eql('integer')
   })
 
   it('returns the mapped field definition', () => {
@@ -1150,6 +1232,80 @@ describe('prepareDocumentation', () => {
     expect(field.required).to.eql(true)
     expect(field.nullAllowed).to.eql(true)
     expect(field.description).to.eql('User ID')
+  })
+
+  it('requiredFor ignores a plain required and nullAllowedFor keeps a plain nullAllowed', () => {
+    const doc = acaee.prepareDocumentation({ controller: 'user', action: 'y', route, apiDoc: {
+      user: {
+        fields: [{ actions: ['y'], field: 'a', type: 'string', required: true, nullAllowed: true, nullAllowedFor: [{ action: 'x' }] }]
+      }
+    } })
+    const field = _.find(doc.request.fields, { field: 'a' })
+    expect(field.required).to.eql(false)
+    expect(field.nullAllowed).to.eql(true)
+  })
+
+  it('matches camelCased actions in enumFor and iamPermissionsFor (request)', () => {
+    const doc = acaee.prepareDocumentation({ controller: 'user', action: 'updateUser', route, apiDoc: {
+      user: {
+        fields: [{
+          actions: ['updateUser'], field: 'role', type: 'string',
+          enumFor: [{ action: 'updateUser', value: ['admin', 'user'] }],
+          iamPermissionsFor: [{ action: 'updateUser', value: ['user:update'] }]
+        }]
+      }
+    } })
+    const field = _.find(doc.request.fields, { field: 'role' })
+    expect(field.enum).to.eql(['admin', 'user'])
+    expect(field.iamPermissions).to.eql(['user:update'])
+  })
+
+  it('matches camelCased actions in enumFor and iamPermissionsFor (response.<action>)', () => {
+    const doc = acaee.prepareDocumentation({ controller: 'user', action: 'updateUser', route, apiDoc: {
+      user: {
+        fields: [{ actions: ['updateUser'], field: 'id', type: 'integer' }, {
+          actions: ['response.updateUser'], field: 'role', type: 'string',
+          enumFor: [{ action: 'response.updateUser', value: ['admin'] }],
+          iamPermissionsFor: [{ action: 'response.updateUser', value: ['user:read'] }]
+        }]
+      }
+    } })
+    const field = _.find(doc.response.fields, { field: 'role' })
+    expect(field.enum).to.eql(['admin'])
+    expect(field.iamPermissions).to.eql(['user:read'])
+  })
+
+  it('matches camelCased actions in enumFor (response fallback)', () => {
+    const doc = acaee.prepareDocumentation({ controller: 'user', action: 'updateUser', route, apiDoc: {
+      user: {
+        fields: [{ actions: ['updateUser'], field: 'id', type: 'integer' }, {
+          actions: ['response'], field: 'role', type: 'string',
+          enumFor: [{ action: 'response', value: ['general'] }]
+        }]
+      }
+    } })
+    expect(_.find(doc.response.fields, { field: 'role' }).enum).to.eql(['general'])
+  })
+
+  it('includes examples with camelCased action', () => {
+    const doc = acaee.prepareDocumentation({ controller: 'user', action: 'updateUser', route, apiDoc: {
+      user: {
+        fields: [{ actions: ['updateUser'], field: 'id', type: 'integer' }],
+        examples: [{ action: 'updateUser', request: { id: 1 }, response: { id: 1 } }]
+      }
+    } })
+    expect(doc.examples).to.have.length(1)
+    expect(doc.examples[0].action).to.eql('updateUser')
+  })
+
+  it('reads response type for camelCased action', () => {
+    const doc = acaee.prepareDocumentation({ controller: 'user', action: 'updateUser', route, apiDoc: {
+      user: {
+        fields: [{ actions: ['updateUser'], field: 'id', type: 'integer' }],
+        response: { updateUser: { type: 'array' } }
+      }
+    } })
+    expect(doc.response.type).to.eql('array')
   })
 
   it('falls back to "response" if no response.action fields exist', () => {

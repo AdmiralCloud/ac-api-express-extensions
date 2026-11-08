@@ -252,7 +252,7 @@ const acaee = () => {
     let examples = []
     // replace identifier
     _.forEach(defExamples, example => {
-      if (!_.get(example, 'identifier') && _.get(example, 'action') === action) {
+      if (!_.get(example, 'identifier') && _.toLower(_.get(example, 'action')) === action) {
         if (_.get(example, 'response.identifier')) {
           let identifier = _.find(defExamples, { identifier: _.get(example, 'response.identifier') })
           let responsePayload = _.merge(_.cloneDeep(_.get(identifier, 'response')), _.get(example, 'response'))
@@ -262,6 +262,9 @@ const acaee = () => {
         examples.push(example)  
       }
     })
+
+    const responseDef = _.get(def, 'response')
+    const responseKey = _.findKey(responseDef, (v, k) => _.toLower(k) === action)
 
     const documentation = {
       name,
@@ -277,7 +280,7 @@ const acaee = () => {
         fields: prepareFields(requestFields, 'request')
       },
       response: {
-        type: _.get(def, 'response.' + action + '.type', 'object'),
+        type: _.get(responseDef, [responseKey, 'type'], 'object'),
         fields: prepareFields(responseFields, 'response')
       },
       examples
@@ -575,7 +578,7 @@ const acaee = () => {
     // Filter by actions
     let processedFields = _.filter(fields, field => {
       if (!_.get(field, 'actions')) return true
-      return _.get(field, 'actions').includes(action)
+      return indexOfCI(_.get(field, 'actions'), action)
     })
     
     // Filter httpMethods
@@ -611,7 +614,7 @@ const acaee = () => {
     if (!def) return { message: 'noAPIdoc', additionalInfo: { controller, action } }
     let fields = _.cloneDeep(_.get(def, 'fields'))
     let fieldToUse = _.find(fields, f => {
-      if (_.indexOf(_.get(f, 'actions'), action) > -1 && _.get(f, 'field') === field) return f
+      if (indexOfCI(_.get(f, 'actions'), action) && _.get(f, 'field') === field) return f
     })
     return mapFieldDefinition(fieldToUse, action)
   }
