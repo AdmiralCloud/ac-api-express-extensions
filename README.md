@@ -126,7 +126,7 @@ Properties without `For` (e.g. `enum`, `iamPermissions`) apply to all actions of
 |**field**|string|Name of the field (required)|
 |type|string|Data type of the field - see [Available types](#available-types) below|
 |description|string/array|Description of the field. Can be a string or an array with action-specific descriptions*|
-|requiredFor|array|Actions the field is required for. Can have additional conditions. There is no plain `required` property: the field is required only for the listed actions, otherwise `false`|
+|requiredFor|array|Actions the field is required for. Can have additional conditions. Request validation (sanitizer): a plain `required` applies to all actions; if `requiredFor` is set, it replaces `required` completely (required only for the listed actions, otherwise `false`). APIdoc output: `required` is derived only from `requiredFor`, a plain `required` is ignored|
 |nullAllowed|boolean|If true, the field can be null for all actions. Stays in effect even if `nullAllowedFor` is set|
 |nullAllowedFor|array|Action-specific null permission, e.g. `[{ action: 'update' }]`. Also accepts the HTTP method. Additive: it only sets `nullAllowed` to true for the listed actions and never overrides a plain `nullAllowed`|
 |enum|array|List of allowed values for all actions|

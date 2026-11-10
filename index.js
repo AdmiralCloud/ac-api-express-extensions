@@ -477,7 +477,7 @@ const acaee = () => {
     if (_.get(field, 'properties')) {
       // filter properties by actions (if actions is set)
       field.properties = _.filter(field.properties, prop => {
-        if (!_.get(prop, 'actions') || _.get(prop, 'actions').includes(action)) return field
+        if (!_.get(prop, 'actions') || indexOfCI(_.get(prop, 'actions'), action)) return field
       })
 
       field.properties = _.map(field.properties, prop => {

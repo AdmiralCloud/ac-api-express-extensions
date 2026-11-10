@@ -925,9 +925,15 @@ describe('mapFieldDefinition', () => {
     expect(acaee.mapFieldDefinition(_.cloneDeep(def), 'y', {}).required).to.eql(false)
   })
 
-  it('nullAllowedFor is additive and keeps a plain nullAllowed', () => {
-    const def = { field: 'a', nullAllowed: true, nullAllowedFor: [{ action: 'x' }] }
-    expect(acaee.mapFieldDefinition(_.cloneDeep(def), 'y', {}).nullAllowed).to.eql(true)
+  it('matches nested property actions case-insensitively', () => {
+    const field = acaee.mapFieldDefinition({
+      field: 'a',
+      properties: [
+        { field: 'p1', actions: ['updateUser'] },
+        { field: 'p2', actions: ['create'] }
+      ]
+    }, 'updateuser', {})
+    expect(_.map(field.properties, 'field')).to.eql(['p1'])
   })
 
   it('sets required=true if requiredFor has no condition', () => {
@@ -1082,6 +1088,35 @@ describe('Sanitizer - extended', () => {
     })
   })
 
+  describe('nested properties with camelCased action', () => {
+    const nestedConfig = {
+      http: config.http,
+      apiDoc: {
+        item: {
+          fields: [{
+            actions: ['updateUser'],
+            field: 'settings',
+            type: 'object',
+            properties: [{ actions: ['updateUser'], field: 'id', type: 'integer', requiredFor: [{ action: 'updateUser' }] }]
+          }]
+        }
+      }
+    }
+
+    it('returns an error if the required nested property is missing', done => {
+      const res = { miscError: error => {
+        expect(error).to.exist
+        return done()
+      } }
+      acaee.sanitizer(nestedConfig, { controller: 'item', action: 'updateuser' }, buildReq({ settings: {} }), res, () => done(new Error('should not call next')))
+    })
+
+    it('calls next if the required nested property is present', done => {
+      const res = { miscError: error => done(new Error('unexpected error ' + JSON.stringify(error))) }
+      acaee.sanitizer(nestedConfig, { controller: 'item', action: 'updateuser' }, buildReq({ settings: { id: 1 } }), res, () => done())
+    })
+  })
+
   it('responds with the checked payload in test environment', done => {
     const testConfig = { ...baseConfig, environment: 'test' }
     const req = buildReq({ id: 1, checkPayload: true, name: 'abc', extra: null })
@@ -1176,6 +1211,22 @@ describe('prepareDocumentation', () => {
     }
   }
   const route = { method: 'get', path: '/v1/user', name: 'Find' }
+
+  it('nullAllowedFor is additive and matches the action case-insensitively', () => {
+    const nullConfig = {
+      item: {
+        fields: [
+          { actions: ['updateUser'], field: 'plain', type: 'string', nullAllowed: true, nullAllowedFor: [{ action: 'create' }] },
+          { actions: ['updateUser'], field: 'listed', type: 'string', nullAllowedFor: [{ action: 'updateUser' }] },
+          { actions: ['updateUser'], field: 'notListed', type: 'string', nullAllowedFor: [{ action: 'create' }] }
+        ]
+      }
+    }
+    const doc = acaee.prepareDocumentation({ controller: 'item', action: 'updateUser', route, apiDoc: nullConfig })
+    expect(_.find(doc.request.fields, { field: 'plain' }).nullAllowed).to.eql(true)
+    expect(_.find(doc.request.fields, { field: 'listed' }).nullAllowed).to.eql(true)
+    expect(_.find(doc.request.fields, { field: 'notListed' }).nullAllowed).to.eql(undefined)
+  })
 
   it('returns an empty object for an unknown controller', () => {
     expect(acaee.prepareDocumentation({ controller: 'unknown', action: 'find', route, apiDoc: docConfig })).to.eql({})
