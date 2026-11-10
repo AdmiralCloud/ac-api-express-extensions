@@ -11,6 +11,11 @@ const acaee = () => {
     }))
   }
 
+  // find entry by action, case-insensitive (e.g. requiredFor: [{ action: 'updateUser' }])
+  const findByAction = (arr, action) => {
+    return _.find(arr, item => _.toLower(_.get(item, 'action')) === _.toLower(action))
+  }
+
   // field properties that can be string or object (if differs for different actions)
   const objFields = [{ docField: 'enumFor', property: 'enum' }, { docField: 'iamPermissionsFor', property: 'iamPermissions' }]
 
@@ -89,7 +94,7 @@ const acaee = () => {
     if (_.isEmpty(def)) return {}
 
     const headers = _.get(def, 'headers', _.get(apiDoc, 'headers'))
-    const description = _.get(_.find(_.get(def, 'descriptions'), { action }),  'description')
+    const description = _.get(findByAction(_.get(def, 'descriptions'), action),  'description')
 
     // filter by actions
     let requestFields = _.orderBy(_.filter(_.cloneDeep(_.get(def, 'fields')), field => {
@@ -155,17 +160,17 @@ const acaee = () => {
               // For request context: try raw action only
               let item
               if (httpMethod !== 'request') {
-                item = _.find(apiDocField, { action: httpMethod + '.' + action })
-                    || _.find(apiDocField, { action: httpMethod })
+                item = findByAction(apiDocField, httpMethod + '.' + action)
+                    || findByAction(apiDocField, httpMethod)
               }
               else {
-                item = _.find(apiDocField, { action })
+                item = findByAction(apiDocField, action)
               }
               _.set(f, objField.property, _.get(item, 'value'))
             }
           })
           
-          let required = _.find(f.requiredFor, { action })
+          let required = findByAction(f.requiredFor, action)
           if (required) {
             if (_.get(required, 'condition')) {
               f.required = _.get(required, 'condition')
@@ -178,11 +183,11 @@ const acaee = () => {
             f.required = false
           }
           
-          let nullAllowed = _.find(f.nullAllowedFor, { action }) || _.find(f.nullAllowedFor, { action: httpMethod })
+          let nullAllowed = findByAction(f.nullAllowedFor, action) || findByAction(f.nullAllowedFor, httpMethod)
           if (nullAllowed) f.nullAllowed = true
           
           if (_.isArray(f.description)) {
-            f.description = _.get((_.find(f.description, { action: httpMethod }) || _.find(f.description, { action })), 'message')
+            f.description = _.get((findByAction(f.description, httpMethod) || findByAction(f.description, action)), 'message')
           }
           
           f.location = _.get(f, 'location', 'body')
@@ -191,7 +196,7 @@ const acaee = () => {
           if (f.schema && !_.isFunction(_.get(f, 'schema.verify'))) {
             let schemaDef = []
             _.forOwn(f.schema, (obj, key) => {
-              let required = _.get(obj, 'required') || _.find(f.requiredFor, { action })
+              let required = _.get(obj, 'required') || findByAction(f.requiredFor, action)
               if (required) {
                 if (_.get(required, 'condition')) {
                   required = _.get(required, 'condition')
@@ -247,7 +252,7 @@ const acaee = () => {
     let examples = []
     // replace identifier
     _.forEach(defExamples, example => {
-      if (!_.get(example, 'identifier') && _.get(example, 'action') === action) {
+      if (!_.get(example, 'identifier') && _.toLower(_.get(example, 'action')) === action) {
         if (_.get(example, 'response.identifier')) {
           let identifier = _.find(defExamples, { identifier: _.get(example, 'response.identifier') })
           let responsePayload = _.merge(_.cloneDeep(_.get(identifier, 'response')), _.get(example, 'response'))
@@ -257,6 +262,9 @@ const acaee = () => {
         examples.push(example)  
       }
     })
+
+    const responseDef = _.get(def, 'response')
+    const responseKey = _.findKey(responseDef, (v, k) => _.toLower(k) === action)
 
     const documentation = {
       name,
@@ -272,7 +280,7 @@ const acaee = () => {
         fields: prepareFields(requestFields, 'request')
       },
       response: {
-        type: _.get(def, 'response.' + action + '.type', 'object'),
+        type: _.get(responseDef, [responseKey, 'type'], 'object'),
         fields: prepareFields(responseFields, 'response')
       },
       examples
@@ -403,7 +411,7 @@ const acaee = () => {
 
   const mapFieldDefinition = (field, action, params) => {
     if (_.isArray(field.requiredFor)) {
-      let r = _.find(field.requiredFor, { action })
+      let r = findByAction(field.requiredFor, action)
       if (r?.condition) {
         let conditions = []
         if (_.isArray(r.condition)) conditions = r.condition
@@ -444,7 +452,7 @@ const acaee = () => {
       // only convert if array
       let apiDocField = _.get(field, objField.docField)
       if (_.isArray(apiDocField)) {
-        let item = _.find(apiDocField, { action })
+        let item = findByAction(apiDocField, action)
         _.set(field, objField.property, _.get(item, 'value'))
       }
     })
@@ -469,7 +477,7 @@ const acaee = () => {
     if (_.get(field, 'properties')) {
       // filter properties by actions (if actions is set)
       field.properties = _.filter(field.properties, prop => {
-        if (!_.get(prop, 'actions') || _.get(prop, 'actions').includes(action)) return field
+        if (!_.get(prop, 'actions') || indexOfCI(_.get(prop, 'actions'), action)) return field
       })
 
       field.properties = _.map(field.properties, prop => {
@@ -570,7 +578,7 @@ const acaee = () => {
     // Filter by actions
     let processedFields = _.filter(fields, field => {
       if (!_.get(field, 'actions')) return true
-      return _.get(field, 'actions').includes(action)
+      return indexOfCI(_.get(field, 'actions'), action)
     })
     
     // Filter httpMethods
@@ -606,7 +614,7 @@ const acaee = () => {
     if (!def) return { message: 'noAPIdoc', additionalInfo: { controller, action } }
     let fields = _.cloneDeep(_.get(def, 'fields'))
     let fieldToUse = _.find(fields, f => {
-      if (_.indexOf(_.get(f, 'actions'), action) > -1 && _.get(f, 'field') === field) return f
+      if (indexOfCI(_.get(f, 'actions'), action) && _.get(f, 'field') === field) return f
     })
     return mapFieldDefinition(fieldToUse, action)
   }
